@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import entry from './containers/entry.jsx';
-import news from './containers/news.jsx';
-import video from './containers/video.jsx';
+import Welcome from './containers/welcome.jsx';
+import Entry from './containers/entry.jsx';
+import News from './containers/news.jsx';
+import Video from './containers/video.jsx';
+import { Provider } from 'react-redux';
+import createStore from './store';
+const store = createStore();
 
 ReactDOM.render(
-    <div>
-        <h1> hello demo111 </h1>
-        <Router>
-            <Switch> 
-                <Route path="/" exact component={entry} />
-                <Route path="/news" component={news} />
-                <Route path="/video" component={video} />
-            </Switch> 
-        </Router>
-    </div>,
+    <Provider  store={store}>  
+        <div>
+            <Welcome></Welcome>
+            <Router>
+                <Switch> 
+                    <Route path="/" exact component={Entry} />
+                    <Route path="/news" component={News} />
+                    <Route path="/video" component={Video} />
+                </Switch> 
+            </Router>
+        </div>
+    </Provider>,
     document.getElementById('app')
 );
