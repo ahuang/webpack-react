@@ -18,6 +18,8 @@
 + css `npm install node-sass sass-loader  css-loader style-loader extract-text-webpack-plugin --save-dev`  
 + url-loader@1.0.1 file-loader@1.1.11 `npm install   file-loader  url-loader --save-dev`  
 + copy-webpack-plugin@4.5.1 `npm install --save-dev copy-webpack-plugin`  
++ axios@0.18.0  `npm install axios`  
++ mockjs@1.0.1-beta3    `npm install mockjs`  
 
 
 
@@ -28,6 +30,8 @@
 
 
 # todo
+react api  请求
+
 mock
 api
 eslint-loader
