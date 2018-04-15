@@ -6,7 +6,6 @@ export default class Video extends React.Component {
         return (
             <div>
                 <p>视频展示</p>
-                <Link to="/">back</Link>
             </div>
         )
     }

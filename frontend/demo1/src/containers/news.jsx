@@ -25,7 +25,6 @@ export default class News extends React.Component {
             <div>
                 <p>新闻报道</p>
                 {this.showTitle()}
-                <Link to="/">back</Link>
             </div>
         )
     }

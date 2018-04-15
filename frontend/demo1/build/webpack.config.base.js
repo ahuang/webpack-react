@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');//css样式从js文件中分离出来
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -49,7 +50,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("style.css")  //提取出来的样式放在style.css文件中
+        new ExtractTextPlugin("style.css"),  //提取出来的样式放在style.css文件中
+        new CopyWebpackPlugin([{
+            from: __dirname + '/../src/icomoon',
+            to: __dirname + '/../dist/icomoon',
+            toType: 'dir'
+        }])
     ]
    
 }

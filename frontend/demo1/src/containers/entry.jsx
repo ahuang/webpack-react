@@ -12,9 +12,9 @@ export default class Entry extends React.Component {
             <div>
                 <nav>
                     <ul className="nav">
-                        <li><a href="/">首页</a></li> 
-                        <li><a href="/#/news">新闻</a></li> 
-                        <li><a href="/#/video">视频</a></li> 
+                        <li> <i className="icon-home"></i> <a href="/">首页</a></li> 
+                        <li> <i className="icon-bullhorn"></i> <a href="/#/news">新闻</a></li> 
+                        <li> <i className="icon-play"></i> <a href="/#/video">视频</a></li> 
                     </ul>
                 </nav>
             </div>
