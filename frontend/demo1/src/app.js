@@ -8,14 +8,15 @@ import Video from './containers/video.jsx';
 import { Provider } from 'react-redux';
 import createStore from './store';
 const store = createStore();
+import './scss/index.scss';
 
 ReactDOM.render(
     <Provider  store={store}>  
         <div>
-            <Welcome></Welcome>
+            <Entry></Entry>
             <Router>
                 <Switch> 
-                    <Route path="/" exact component={Entry} />
+                    <Route path="/" exact component={Welcome} />
                     <Route path="/news" component={News} />
                     <Route path="/video" component={Video} />
                 </Switch> 

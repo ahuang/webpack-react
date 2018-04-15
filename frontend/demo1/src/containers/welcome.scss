@@ -1,0 +1,17 @@
+.welcome-module{
+    .user-btn{
+        position: relative;
+        left: 50px;
+    }
+    .weather{
+        background-image: url(/images/cloundy.png);
+        background-size: contain;
+        background-repeat: no-repeat;    
+        width: 200px;
+        height: 200px;    
+    }
+    .scene-img{
+        display: block;
+        width: 300px;
+    }
+}

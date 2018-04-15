@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './entry.scss';
 
 export default class Entry extends React.Component {
     constructor(props){
@@ -11,9 +11,10 @@ export default class Entry extends React.Component {
         return (
             <div>
                 <nav>
-                    <ul>
-                        <li><Link to="/news">新闻</Link></li> 
-                        <li><Link to="/video">视频</Link></li> 
+                    <ul className="nav">
+                        <li><a href="/">首页</a></li> 
+                        <li><a href="/#/news">新闻</a></li> 
+                        <li><a href="/#/video">视频</a></li> 
                     </ul>
                 </nav>
             </div>
