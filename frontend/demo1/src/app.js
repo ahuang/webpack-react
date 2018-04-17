@@ -10,6 +10,12 @@ import createStore from './store';
 const store = createStore();
 import './scss/index.scss';
 
+console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
+if(process.env.NODE_ENV === 'development'){
+    require('./mock/movie.js');
+    require('./mock/user.js');
+}
+
 ReactDOM.render(
     <Provider  store={store}>  
         <div>

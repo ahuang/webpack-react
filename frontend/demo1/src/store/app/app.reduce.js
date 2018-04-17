@@ -1,13 +1,14 @@
 import Immutable from 'immutable';
 
 const initValue = Immutable.fromJS({
-    currentUser: {id: 1, name: '小明'}
+    currentUser: {}
 });
 
  const appReducer =  (value=initValue, action) => {
     switch(action.type){
-        case 'SET_CURRENT_USER':
-            value = value.set('currentUser', action.userInfo);
+        case 'SET_USER_INFO':
+            value = value.set('currentUser', 
+                Immutable.fromJS(action.userInfo));
             return value;
         default: 
             return value;

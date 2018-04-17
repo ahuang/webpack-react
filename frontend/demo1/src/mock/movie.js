@@ -1,5 +1,5 @@
-import Mock from 'mockjs';
-Mock.setup({timeout: '1000-3000'});
+import Mock from './base.js';
+
 Mock.mock('/api/v1/movies', {
     code: 200,
     message: 'SUCCESS',
