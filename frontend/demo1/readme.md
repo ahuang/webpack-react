@@ -30,10 +30,8 @@
 
 
 # todo
-react api  请求
-
-mock
-api
+done react api  请求
+done mock  api
 eslint-loader
 prod 先删除dist目录然后打包功能
 prod 代码压缩 抽取公共代码

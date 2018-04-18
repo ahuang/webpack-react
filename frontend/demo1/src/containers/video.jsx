@@ -1,36 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Immutable from 'immutable';
-import VideoService from '../services/videoService.js';
-
+import VideoService from '../services/videoService';
 
 
 export default class Video extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            movies: Immutable.fromJS([])
-        }
+            movies: Immutable.fromJS([]),
+        };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         // movie只属于当前组件,因此没有必要放到store上
-        VideoService.getMovies().then((data)=>{
-            if(!!data && !!data.result && !!data.result.length){
-                this.setState({movies: Immutable.fromJS(data.result)})
+        VideoService.getMovies().then((data) => {
+            if (!!data && !!data.result && !!data.result.length) {
+                this.setState({ movies: Immutable.fromJS(data.result) });
             }
-        },(error) => {
-            console.log('get movies error: ', error);            
-        })
+        }, (error) => {
+            console.log('get movies error: ', error);
+        });
     }
 
-    showMoives(){
-        let movieList = [];
-        this.state.movies.forEach(movie => {
-            movieList.push(<li key={movie.get('name')}>{movie.get('name')} &nbsp;&nbsp;&nbsp;&nbsp; {movie.get('score')}</li>)            
+    showMoives() {
+        const movieList = [];
+        this.state.movies.forEach((movie) => {
+            movieList.push(<li key={movie.get('name')}>{movie.get('name')} &nbsp;&nbsp;&nbsp;&nbsp; {movie.get('score')}</li>);
         });
-        return (<ul>{movieList}</ul>)
+        return (<ul>{movieList}</ul>);
     }
 
     render() {
@@ -39,6 +36,6 @@ export default class Video extends React.Component {
                 <h1>movies have fun!</h1>
                 {this.showMoives()}
             </div>
-        )
+        );
     }
 }

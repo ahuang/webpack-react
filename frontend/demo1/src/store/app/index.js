@@ -1,7 +1,5 @@
-import * as appActions  from './app.action.js';
-import { appReducer } from './app.reduce.js';
-
-console.log(appActions);
+import * as appActions from './app.action';
+import appReducer from './app.reduce';
 
 
-export { appActions, appReducer};
+export { appActions, appReducer };

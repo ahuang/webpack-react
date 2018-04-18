@@ -1,29 +1,29 @@
-import Mock from './base.js';
+import Mock from './base';
 
-let user = {
+const user = {
     id: 1,
     name: '张东',
-    userName: '大东'
+    userName: '大东',
 };
 
 
-let getCurrentUserUrl = '/api/v1/user/current';
-Mock.mock(getCurrentUserUrl, function(options) {
+const getCurrentUserUrl = '/api/v1/user/current';
+Mock.mock(getCurrentUserUrl, (options) => {
     console.log(`get current user url=${getCurrentUserUrl}, options=${JSON.stringify(options)}`);
     return {
         code: 200,
         message: 'SUCCESS',
-        result: user
-    }
-})
+        result: user,
+    };
+});
 
-let updateUserName = '/api/v1/user/1';
-Mock.mock(updateUserName, function(options) {
+const updateUserName = '/api/v1/user/1';
+Mock.mock(updateUserName, (options) => {
     console.log(`update userName url=${updateUserName}, options=${JSON.stringify(options)}`);
     user.userName = options.body;
     return {
         code: 200,
         message: 'SUCCESS',
-        result: null
-    }
-})
+        result: null,
+    };
+});
