@@ -13,9 +13,25 @@ app.use(staticServer(__dirname + '/dist'))
 
 // render
 app.use(async function(ctx) {
-  console.log(ctx.path);
-  await ctx.render('index');
+  console.log(ctx.path); 
+  console.log(ctx.path === '/api/v1/movies'); 
+  if(ctx.path === '/'){
+    await ctx.render('index');
+  }else if(ctx.path === '/api/v1/movies'){
+    return ctx.body =  {
+        code: 200,
+        message: 'SUCCESS',
+        result: [
+            { name: 'back-电影1', score: 9 },
+            { name: 'bakc-电影2', score: 8 },
+        ],
+    }
+  }
+
 });
+
+
+
 
 let port = process.argv[2] || 3000;
 if (!module.parent) app.listen(port, ()=>{

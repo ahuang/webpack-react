@@ -18,6 +18,11 @@ const webpackDevConfig = merge(base, {
         compress: true,
         port: 9000,
         hot: true,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000'
+            }
+        }
     },
     devtool: 'inline-source-map',
     mode: 'development',
