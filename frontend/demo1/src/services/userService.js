@@ -6,7 +6,7 @@ const UserService = {
         return new Promise((resolve, reject) => getData(`${prefixUrl}/user/current`).then(response => resolve(response.data), error => reject(error)));
     },
     setUserName(userId, userName) {
-        return new Promise((resolve, reject) => putData(`${prefixUrl}/user/${userId}`, userName).then(response => resolve(response.data), error => reject(error)));
+        return new Promise((resolve, reject) => putData(`${prefixUrl}/user/${userId}`, { userName }).then(response => resolve(response.data), error => reject(error)));
     },
 };
 

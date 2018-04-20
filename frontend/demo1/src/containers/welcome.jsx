@@ -47,14 +47,14 @@ class Welcome extends React.Component {
         return (
             <div className="welcome-module">
                 <h1>
-                    hello {this.showUserInfo()}
+                    hello welcome! {this.showUserInfo()}
                 </h1>
                 <p>
                     <input type="text" placeholder="请输入昵称" value={this.state.userNameInput} onChange={this.userNameChange} style={{ height: '30px' }} />
                     <button className="user-btn" onClick={this.setUserName} >设置用户名</button>
                 </p>
                 <div>
-                    <p> 天气: 多云</p>
+                    <p> 天气:多云~~~</p>
                     <p className="weather" />
                 </div>
                 <div>

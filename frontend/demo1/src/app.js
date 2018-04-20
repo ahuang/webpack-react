@@ -13,8 +13,8 @@ const store = createStore();
 
 console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
 if (process.env.NODE_ENV === 'development') {
-    require('./mock/movie.js');
-    require('./mock/user.js');
+    // require('./mock/movie.js');
+    // require('./mock/user.js');
 }
 
 ReactDOM.render(

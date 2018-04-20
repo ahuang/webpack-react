@@ -1,14 +1,24 @@
 const path = require('path');
 const views = require('koa-views');
 const Koa = require('koa');
+const koaBody = require('koa-body')
 const app = module.exports = new Koa();
 const staticServer = require('koa-static');
 
+app.use(koaBody());
 // setup views, appending .ejs
 // when no extname is given to render()
 app.use(views(path.join(__dirname, '/dist'), { extension: 'html' }));
 
 app.use(staticServer(__dirname + '/dist'))
+
+
+const user = {
+  id: 1,
+  name: '杨过',
+  userName: 'guo',
+};
+
 
 
 // render
@@ -26,6 +36,20 @@ app.use(async function(ctx) {
             { name: 'bakc-电影2', score: 8 },
         ],
     }
+  }else if(ctx.path === '/api/v1/user/current'){
+    ctx.body = {
+      code: 200,
+      message: 'SUCCESS',
+      result: user,
+    };
+  }else if(ctx.path === '/api/v1/user/1'){
+    console.log(ctx.request.body);
+    user.userName = ctx.request.body.userName || 'default';
+    ctx.body = {
+        code: 200,
+        message: 'SUCCESS',
+        result: null,
+    };
   }
 
 });
