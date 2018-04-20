@@ -15,8 +15,8 @@ app.use(staticServer(__dirname + '/dist'))
 
 const user = {
   id: 1,
-  name: '杨过',
-  userName: 'guo',
+  name: 'backName',
+  userName: '名字来自back-API',
 };
 
 

@@ -46,9 +46,11 @@
 `done` prod 先删除dist目录然后打包功能    方案是：webpack-cleanup-plugin
 `done` back-server-api 补上
 `done` prod 将index.html也拷贝到dist目录 copy-webpack-plugin
+`done` env-config 使用json配置文件，可以直接读取
 prod js css hash注入    html-webpack-plugin 如何控制plugin的执行顺序，需要先注入hash然后拷贝index.html. 目前的顺序反了
 prod 拷贝的字体文件能否注入hash? 字体文件如何解决比较好？用loader还是plugin
 prod 代码压缩 抽取公共代码
+
 
 打包优化 node_module排除
 mode参数背后的工作:https://webpack.js.org/concepts/mode/

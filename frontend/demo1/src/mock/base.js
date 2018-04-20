@@ -1,4 +1,4 @@
 import Mock from 'mockjs';
 
-Mock.setup({ timeout: '1000-3000' });
+Mock.setup({ timeout: '50-120' });
 export default Mock;

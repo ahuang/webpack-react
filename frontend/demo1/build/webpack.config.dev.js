@@ -3,6 +3,9 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const base = require('./webpack.config.base.js');
+const devEnv = require('./env-config.json').dev;
+
+console.log(`--- envConfig ${JSON.stringify(devEnv)} ---`);
 
 const webpackDevConfig = merge(base, {
     module: {
@@ -16,11 +19,12 @@ const webpackDevConfig = merge(base, {
     devServer: {
         contentBase: './',
         compress: true,
-        port: 9000,
+        host: devEnv.devServerHost,
+        port: devEnv.devServerPort,
         hot: true,
         proxy: {
             '/api': {
-                target: 'http://localhost:3000'
+                target: `http://${devEnv.apiHost}:${devEnv.apiPort}`
             }
         }
     },
