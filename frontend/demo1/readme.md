@@ -48,33 +48,25 @@
 `done` prod 将index.html也拷贝到dist目录 copy-webpack-plugin
 `done` env-config 使用json配置文件，可以直接读取
 `done` 拷贝的字体文件能否注入hash? 字体文件如何解决比较好？用loader还是plugin. 为了hash注入，使用loader引入字体文件
-prod js css hash注入  html-webpack-plugin 如何控制plugin的执行顺序，需要先注入hash然后拷贝index.html. 目前的顺序反了
+`done` prod js css hash注入  html-webpack-plugin 如何控制plugin的执行顺序，需要先注入hash然后拷贝index.html. 目前的顺序反了
     方案1: 使用webpack-shell-plugin来控制顺序，build结束之后，用shell命令，比如cp来做copy功能，不需要使用copy-webpack-plugin
     方案2: 使用filemanager-webpack-plugin来做copy功能，支持build之后copy文件
     改问题的讨论 https://github.com/webpack-contrib/copy-webpack-plugin/issues/15
- 
+`done` prod 代码压缩  
 
+`done` mode参数背后的工作:https://webpack.js.org/concepts/mode/
 
-prod 代码压缩 抽取公共代码
 打包优化 
+    抽取公共代码
     node_module排除
     使用yarn代替npm打包
     vendors.js https://stackoverflow.com/questions/35725384/webpackhtmlplugin-control-the-order-of-injected-files
-mode参数背后的工作:https://webpack.js.org/concepts/mode/
-process.env.NODE_ENV 
-    https://doc.webpack-china.org/guides/production/ 
-    https://www.jianshu.com/p/ce8f405935b9
 
-plugin和loader作用的区别？plugin和loader内部的执行顺序？
 
-code里的@ path功能，webpack里的path 
+
+path的区别？
     __dirname?
      `${__dirname}/../src/icomoon` 
      path.resolve(__dirname, '../src/icomoon') 
      path.join(__dirname, 'xxx')
-
-
-
-
-
 

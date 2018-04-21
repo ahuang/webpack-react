@@ -1,4 +1,4 @@
-import Mock from './base';
+import Mock from '@/mock/base';
 
 const user = {
     id: 1,

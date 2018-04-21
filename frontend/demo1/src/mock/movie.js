@@ -1,4 +1,4 @@
-import Mock from './base';
+import Mock from '@/mock/base';
 
 Mock.mock('/api/v1/movies', {
     code: 200,

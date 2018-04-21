@@ -3,10 +3,10 @@
 import React from 'react';
 // 连接store和react
 import { connect } from 'react-redux';
-import { appActions } from '../store/app/index';
+import { appActions } from '@/store/app/index';
 
-import './welcome.scss';
-import autumnPic from '../images/autumn.jpg';
+import '@/containers/welcome.scss';
+import autumnPic from '@/images/autumn.jpg';
 
 
 class Welcome extends React.Component {

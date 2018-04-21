@@ -1,5 +1,5 @@
 
-import UserService from '../../services/userService';
+import UserService from '@/services/userService';
 
 const setUserInfo = userInfo => ({
     type: 'SET_USER_INFO',

@@ -28,7 +28,7 @@ const webpackDevConfig = merge(base, {
             }
         }
     },
-    devtool: 'inline-source-map',
+    devtool: 'cheap-eval-source-map',
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

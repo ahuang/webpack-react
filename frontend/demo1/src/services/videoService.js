@@ -1,4 +1,4 @@
-import { getData } from '../utils/http';
+import { getData } from '@/utils/http';
 
 const prefixUrl = '/api/v1';
 const VideoService = {

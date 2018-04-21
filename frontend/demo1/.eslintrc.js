@@ -34,6 +34,8 @@ module.exports = {
         "import/extensions": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         // 关闭规则(强制要求拖尾逗号)
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        // 关闭规则(无法解析@符号)        
+        "import/no-unresolved": 0
     }    
 };

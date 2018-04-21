@@ -1,4 +1,4 @@
-import { getData, putData } from '../utils/http';
+import { getData, putData } from '@/utils/http';
 
 const prefixUrl = '/api/v1';
 const UserService = {

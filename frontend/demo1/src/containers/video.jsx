@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import VideoService from '../services/videoService';
+import VideoService from '@/services/videoService';
 
 
 export default class Video extends React.Component {
