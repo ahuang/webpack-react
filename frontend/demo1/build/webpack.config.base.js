@@ -1,12 +1,15 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// css样式从js文件中分离出来
 const path = require('path');
 
+const entryPath = path.join(__dirname, '..', 'src', 'app.js');
+const outputPath = path.join(__dirname, '..', 'dist');
+
 module.exports = {
     entry: {
-        bundle: `${__dirname}/../src/app.js`,
+        bundle: entryPath
     },
     output: {
-        path: `${__dirname}/../dist`,
+        path: outputPath,
         filename: '[name].js',
         publicPath: '/',
     },
@@ -62,7 +65,6 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.join(__dirname, '..', 'src')
-            // '@': path.resolve(__dirname, '../src/') // both ok
         }
     }
 

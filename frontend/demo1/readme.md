@@ -57,16 +57,21 @@
 `done` mode参数背后的工作:https://webpack.js.org/concepts/mode/
 
 打包优化 
+    https://jeffjade.com/2017/08/12/125-webpack-package-optimization-for-speed/
+    https://github.com/hawx1993/tech-blog/issues/3
+    https://segmentfault.com/a/1190000006087638
     抽取公共代码
     node_module排除
     使用yarn代替npm打包
     vendors.js https://stackoverflow.com/questions/35725384/webpackhtmlplugin-control-the-order-of-injected-files
+    
+
+优化之前: prod
+    Time: 8342ms 
+    Time: 11520ms
+    Time: 7613ms
+    Time: 7651ms
+    Time: 7618ms
 
 
-
-path的区别？
-    __dirname?
-     `${__dirname}/../src/icomoon` 
-     path.resolve(__dirname, '../src/icomoon') 
-     path.join(__dirname, 'xxx')
-
+back server 一键部署 
