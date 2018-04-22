@@ -60,8 +60,23 @@ module.exports = {
         ],
     },
     plugins: [
-        new ExtractTextPlugin('style.css') // 提取出来的样式放在style.css文件中
+        new ExtractTextPlugin('style.css'), // 提取出来的样式放在style.css文件中
     ],
+    // 4.0中已经删除CommonsChunkPlugin，替换成了splitChunks
+    optimization: {
+        runtimeChunk: {
+            name: 'runtime',
+        },
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     resolve: {
         alias: {
             '@': path.join(__dirname, '..', 'src')

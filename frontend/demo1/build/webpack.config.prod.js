@@ -6,7 +6,6 @@ const path = require('path');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const webpackProdConfig = merge(base, {
     devtool: 'source-map',
@@ -27,12 +26,11 @@ const webpackProdConfig = merge(base, {
                     destination: path.resolve(__dirname, '../dist/index.html')
                 }]
             }
-        }),
-        new UglifyJsPlugin({
-            sourceMap: true
         })
-    ]
+    ],
+    optimization: {
+        minimize: true
+    }
 });
 
 module.exports = webpackProdConfig;
-

@@ -56,15 +56,27 @@
 
 `done` mode参数背后的工作:https://webpack.js.org/concepts/mode/
 
-打包优化 
-    https://jeffjade.com/2017/08/12/125-webpack-package-optimization-for-speed/
-    https://github.com/hawx1993/tech-blog/issues/3
-    https://segmentfault.com/a/1190000006087638
-    抽取公共代码
+
+打包优化-bundle.js体积大小优化 todo    
+    style.css文件太大
+    生产环境启用压缩等插件，去除不必要插件
+    拆分业务代码与第三方库及公共模块
+    webpack 开启 gzip 压缩
+    按需加载
+    抽取公共代码 done
+    react独立出来
     node_module排除
     使用yarn代替npm打包
-    vendors.js https://stackoverflow.com/questions/35725384/webpackhtmlplugin-control-the-order-of-injected-files
-    
+    vendors.js     
+
+提高构建速度 todo 
+    Webpack.DDLPlugin，HappyPack
+
+
+# import!
+webpack4.0 optimization 配置
+https://www.cnblogs.com/xiaohuochai/p/8489602.html    
+
 
 优化之前: prod
     Time: 8342ms 
