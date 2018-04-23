@@ -54,7 +54,11 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'url-loader'
+                        loader: 'url-loader',
+                        options: {
+                            name: 'fonts/[name].[ext]',
+                            limit: 30000,
+                        }
                     }],
             },
         ],
