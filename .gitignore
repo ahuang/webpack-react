@@ -1,6 +1,6 @@
-frontend/demo1/node_modules
-frontend/demo1/dist/
-backend/demo1/node_modules/
-backend/demo1/dist
+frontend/react/node_modules
+frontend/react/dist/
+frontend/vue/node_modules
+frontend/vue/dist/
 backend/server/node_modules/
 backend/server/dist/

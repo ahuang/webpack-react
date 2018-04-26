@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');// css样式从js文件中分离出来
 const path = require('path');
+const webpack = require('webpack');
 
 const entryPath = path.join(__dirname, '..', 'src', 'app.js');
 const outputPath = path.join(__dirname, '..', 'dist');
@@ -65,6 +66,7 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('style.css'), // 提取出来的样式放在style.css文件中
+        new webpack.optimize.DedupePlugin()
     ],
     // 4.0中已经删除CommonsChunkPlugin，替换成了splitChunks
     optimization: {

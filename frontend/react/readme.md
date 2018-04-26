@@ -58,20 +58,22 @@
 
 
 打包优化-bundle.js体积大小优化 todo    
-    style.css文件太大
-    生产环境启用压缩等插件，去除不必要插件
-    拆分业务代码与第三方库及公共模块
-    webpack 开启 gzip 压缩
-    按需加载
-    抽取公共代码 done
-    react独立出来
+    `done` style.css文件太大
+    `done`打包公共代码 
+    `done`react独立出来
+    删除重复的依赖
+    optimization 参数 
     node_module排除
     使用yarn代替npm打包
     vendors.js     
+    生产环境启用压缩等插件，去除不必要插件
+    拆分业务代码与第三方库及公共模块
+    webpack 开启 gzip 压缩
+    按需加载    
+    去重
 
 提高构建速度 todo 
     Webpack.DDLPlugin，HappyPack
-
 
 # import!
 webpack4.0 optimization 配置
