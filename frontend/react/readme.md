@@ -89,3 +89,5 @@ https://www.cnblogs.com/xiaohuochai/p/8489602.html
 
 
 back server 一键部署 
+
+参考create-react-app配置

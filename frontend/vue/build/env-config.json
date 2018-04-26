@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "devServerHost": "localhost",
+        "devServerPort": "9000",
+        "apiHost": "localhost",
+        "apiPort": "3000"
+    },
+    "prod": {
+    }
+}

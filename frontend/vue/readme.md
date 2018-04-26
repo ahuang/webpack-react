@@ -1,5 +1,6 @@
-# 技术栈
-* react   
-* react-router  
+# todo
+
+参考vue-cli 配置
+
 
 
