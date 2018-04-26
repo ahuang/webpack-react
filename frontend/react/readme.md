@@ -58,9 +58,12 @@
 
 
 打包优化-bundle.js体积大小优化 todo    
-    `done` style.css文件太大
-    `done`打包公共代码 
-    `done`react独立出来
+    `done` 打包公共代码 
+    `done` style.css文件太大 将字体分离出来
+    `done` tree shaking uglify-js purify-css
+    `known` 懒加载 require.ensure
+
+
     删除重复的依赖
     optimization 参数 
     node_module排除
@@ -76,8 +79,8 @@
     Webpack.DDLPlugin，HappyPack
 
 # import!
-webpack4.0 optimization 配置
 https://www.cnblogs.com/xiaohuochai/p/8489602.html    
+@长缓存优化  https://www.cnblogs.com/ihardcoder/p/5623411.html
 
 
 优化之前: prod
@@ -91,3 +94,6 @@ https://www.cnblogs.com/xiaohuochai/p/8489602.html
 back server 一键部署 
 
 参考create-react-app配置
+
+
+
