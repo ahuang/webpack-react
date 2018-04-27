@@ -66,8 +66,13 @@
     `done` webpack 开启 gzip 压缩  @plugin 
 
 提高构建速度 todo 
-    Webpack.DDLPlugin，HappyPack
     `done` 使用yarn代替npm打包
+    Webpack.DDLPlugin
+    HappyPack
+
+http://taobaofed.org/blog/2016/12/08/happypack-source-code-analysis/
+https://github.com/amireh/happypack
+https://medium.com/@Erichain/%E4%BD%BF%E7%94%A8-happypack-%E5%92%8C-dllplugin-%E6%9D%A5%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84-webpack-%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6-7a1c41c5e78b
 
 
 
