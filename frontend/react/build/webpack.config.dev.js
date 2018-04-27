@@ -2,6 +2,8 @@
 
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');// css样式从js文件中分离出来
+
 const base = require('./webpack.config.base.js');
 const devEnv = require('./env-config.json').dev;
 
@@ -32,6 +34,7 @@ const webpackDevConfig = merge(base, {
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin('style.css'),
     ],
 });
 

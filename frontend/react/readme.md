@@ -58,10 +58,14 @@
 
 
 打包优化-bundle.js体积大小优化 todo    
-    `done` 打包公共代码 
-    `done` style.css文件太大 将字体分离出来
-    `done` tree shaking uglify-js purify-css
-    `known` 懒加载 require.ensure
+    `done` 打包公共代码     @config
+    `done` style.css文件太大 将字体分离出来 @plugin 
+    `done` tree shaking uglify-js purify-css @plugin 
+    `known` 懒加载 require.ensure 
+    `done` 长缓存优化 将hash替换为chunkhash，这样当chunk不变时，缓存依然有效 @config
+
+# import!
+https://www.cnblogs.com/xiaohuochai/p/8489602.html    
 
 
     删除重复的依赖
@@ -78,9 +82,6 @@
 提高构建速度 todo 
     Webpack.DDLPlugin，HappyPack
 
-# import!
-https://www.cnblogs.com/xiaohuochai/p/8489602.html    
-@长缓存优化  https://www.cnblogs.com/ihardcoder/p/5623411.html
 
 
 优化之前: prod
@@ -94,6 +95,31 @@ https://www.cnblogs.com/xiaohuochai/p/8489602.html
 back server 一键部署 
 
 参考create-react-app配置
+
+
+-----
+
+@长缓存优化  https://www.cnblogs.com/ihardcoder/p/5623411.html
+
+
+
+
+
+
+
+webpack中的缓存
+https://doc.webpack-china.org/guides/caching
+目标: 通过必要的配置，以确保 webpack 编译生成的文件能够被客户端缓存，而在文件内容变化后，能够请求到新的文件。
+浏览器会在什么情况下使用缓存? 后端服务应该如何设置浏览器会在js hash值不变时使用缓存？
+HashedModuleIdsPlugin 这个插件可以防止vendor不必要的变化？
+
+
+
+
+
+
+
+
 
 
 
