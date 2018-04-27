@@ -67,23 +67,15 @@
 
 提高构建速度 todo 
     Webpack.DDLPlugin，HappyPack
-    使用yarn代替npm打包
+    `done` 使用yarn代替npm打包
+
+
+
 
 -----
 back server 一键部署 
 参考create-react-app配置
 
-
-
-
-
-
-
-webpack中的缓存
-https://doc.webpack-china.org/guides/caching
-目标: 通过必要的配置，以确保 webpack 编译生成的文件能够被客户端缓存，而在文件内容变化后，能够请求到新的文件。
-浏览器会在什么情况下使用缓存? 后端服务应该如何设置浏览器会在js hash值不变时使用缓存？
-HashedModuleIdsPlugin 这个插件可以防止vendor不必要的变化？
 
 
 
