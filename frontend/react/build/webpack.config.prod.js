@@ -9,6 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const webpackProdConfig = merge(base, {
     output: {
@@ -41,6 +42,13 @@ const webpackProdConfig = merge(base, {
                 path.join(__dirname, '../src/**/*.js'),
             ]),
         }),
+        new CompressionWebpackPlugin({ // gzip 压缩
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(js|css)$'), // 压缩 js 与css
+            threshold: 10240,
+            minRatio: 0.8
+        })
     ],
     optimization: {
         minimize: true

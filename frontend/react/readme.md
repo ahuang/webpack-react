@@ -63,43 +63,15 @@
     `done` tree shaking uglify-js purify-css @plugin 
     `known` 懒加载 require.ensure 
     `done` 长缓存优化 将hash替换为chunkhash，这样当chunk不变时，缓存依然有效 @config
-
-# import!
-https://www.cnblogs.com/xiaohuochai/p/8489602.html    
-
-
-    删除重复的依赖
-    optimization 参数 
-    node_module排除
-    使用yarn代替npm打包
-    vendors.js     
-    生产环境启用压缩等插件，去除不必要插件
-    拆分业务代码与第三方库及公共模块
-    webpack 开启 gzip 压缩
-    按需加载    
-    去重
+    `done` webpack 开启 gzip 压缩
 
 提高构建速度 todo 
     Webpack.DDLPlugin，HappyPack
-
-
-
-优化之前: prod
-    Time: 8342ms 
-    Time: 11520ms
-    Time: 7613ms
-    Time: 7651ms
-    Time: 7618ms
-
-
-back server 一键部署 
-
-参考create-react-app配置
-
+    使用yarn代替npm打包
 
 -----
-
-@长缓存优化  https://www.cnblogs.com/ihardcoder/p/5623411.html
+back server 一键部署 
+参考create-react-app配置
 
 
 
