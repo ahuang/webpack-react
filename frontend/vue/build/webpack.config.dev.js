@@ -4,6 +4,14 @@ const base = require('./webpack.config.base.js');
 const devEnv = require('./env-config.json').dev;
 
 const webpackDevConfig = merge(base, {
+    module: {
+        rules: [{
+            enforce: 'pre',
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+        }],
+    },
     devServer: {
         contentBase: './',
         compress: true,
@@ -12,9 +20,9 @@ const webpackDevConfig = merge(base, {
         hot: true,
         proxy: {
             '/api': {
-                target: `http://${devEnv.apiHost}:${devEnv.apiPort}`
-            }
-        }
+                target: `http://${devEnv.apiHost}:${devEnv.apiPort}`,
+            },
+        },
     },
     devtool: 'cheap-eval-source-map',
     mode: 'development',

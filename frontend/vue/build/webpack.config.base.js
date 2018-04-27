@@ -9,33 +9,33 @@ module.exports = {
     output: {
         path: outputPath,
         filename: 'bundle.js',
-        publicPath: '/'
+        publicPath: '/',
     },
     module: {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
-            },            
+                loader: 'vue-loader',
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015']
-                    }
-                }
-            }
-        ]
+                        presets: ['es2015'],
+                    },
+                },
+            },
+        ],
     },
     resolve: {
         alias: {
-            'vue': 'vue/dist/vue.js',
-            '@': path.join(__dirname, '..', 'src')            
-        }
+            vue: 'vue/dist/vue.js',
+            '@': path.join(__dirname, '..', 'src'),
+        },
     },
     plugins: [
         new VueLoaderPlugin(),
-    ]
-}
+    ],
+};
