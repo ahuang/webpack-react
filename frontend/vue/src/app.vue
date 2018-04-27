@@ -1,10 +1,15 @@
 <template>
-  <div class="app-wrap">
-      <h1>hello vue test!</h1>
-  </div>
+    <div class="app-wrap">
+        <h1>hello vue test!</h1>
+        <Entry/>
+        <router-view></router-view>
+    </div>
 </template>
 <script>
-    export default {
-        name: 'app',
-    }
+import Entry from '@/containers/entry.vue';
+
+export default {
+    name: 'app',
+    components: { Entry }
+};
 </script>

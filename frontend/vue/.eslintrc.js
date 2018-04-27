@@ -20,6 +20,10 @@ module.exports = {
         // 修改规则(以分号结尾)
         "semi": ["error","always"],
         // 关闭规则(无法解析@符号)        
-        "import/no-unresolved": 0        
+        "import/no-unresolved": 0,
+        // 关闭规则(强制要求拖尾逗号)
+        "comma-dangle": "off",               
+        // 关闭规则(强制要求不能以new开始)        
+        "no-new": "off",
     } 
 };
