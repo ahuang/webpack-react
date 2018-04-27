@@ -21,20 +21,18 @@ const webpackProdConfig = merge(base, {
     mode: 'production',
     plugins: [
         new WebpackCleanupPlugin(),
-        new ExtractTextPlugin('style.[chunkhash].css'),
         new FileManagerPlugin({
-            onStart: {
+            onEnd: {
                 copy: [{
-                    source: path.resolve(__dirname, '../template.html'),
-                    destination: path.resolve(__dirname, '../dist/template.html')
+                    source: path.resolve(__dirname, '../index.html'),
+                    destination: path.resolve(__dirname, '../dist/index.html')
                 }]
             }
         }),
         new HtmlWebpackPlugin({
-            title: 'demo1',
             inject: true,
-            filename: path.resolve(__dirname, '../dist/index.html'),
-            template: path.resolve(__dirname, '../dist/template.html'),
+            filename: path.resolve(__dirname, '../index.html'),
+            template: path.resolve(__dirname, '../prod.html'),
         }),
         new PurifyCSSPlugin({
             paths: glob.sync([
@@ -48,7 +46,8 @@ const webpackProdConfig = merge(base, {
             test: new RegExp('\\.(js|css)$'), // 压缩 js 与css
             threshold: 10240,
             minRatio: 0.8
-        })
+        }),
+        new ExtractTextPlugin('style.[chunkhash].css'),
     ],
     optimization: {
         minimize: true

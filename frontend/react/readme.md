@@ -63,7 +63,7 @@
     `done` tree shaking uglify-js purify-css @plugin 
     `known` 懒加载 require.ensure 
     `done` 长缓存优化 将hash替换为chunkhash，这样当chunk不变时，缓存依然有效 @config
-    `done` webpack 开启 gzip 压缩
+    `done` webpack 开启 gzip 压缩  @plugin 
 
 提高构建速度 todo 
     Webpack.DDLPlugin，HappyPack

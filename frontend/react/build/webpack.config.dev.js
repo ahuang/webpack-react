@@ -1,8 +1,10 @@
 // webpack.config.dev.js
 
+const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');// css样式从js文件中分离出来
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const base = require('./webpack.config.base.js');
 const devEnv = require('./env-config.json').dev;
@@ -35,6 +37,14 @@ const webpackDevConfig = merge(base, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css'),
+        new FileManagerPlugin({
+            onEnd: {
+                copy: [{
+                    source: path.resolve(__dirname, '../dev.html'),
+                    destination: path.resolve(__dirname, '../index.html')
+                }]
+            }
+        }),
     ],
 });
 
