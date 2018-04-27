@@ -4,11 +4,16 @@ const Koa = require('koa');
 const koaBody = require('koa-body')
 const app = module.exports = new Koa();
 const staticServer = require('koa-static');
+const staticCache = require('koa-static-cache');
 
 app.use(koaBody());
 // setup views, appending .ejs
 // when no extname is given to render()
-app.use(views(path.join(__dirname, '/dist'), { extension: 'html' }));
+app.use(views(path.join(__dirname, 'dist'), { extension: 'html' }));
+
+app.use(staticCache(path.join(__dirname, 'dist'), {
+  maxAge: 365 * 24 * 60 * 60
+}))
 
 app.use(staticServer(__dirname + '/dist'))
 
