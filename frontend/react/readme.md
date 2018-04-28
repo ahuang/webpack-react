@@ -28,12 +28,22 @@
 + webpack related `npm install webpack webpack-merge babel-loader babel-core babel-preset-es2015 babel-preset-react  --save-dev  `  
 
 
+# todo 
+back server 一键部署 
+参考create-react-app配置
 
-# todo
+组件库webpack构建速度优化经验总结
+https://juejin.im/post/5a922e776fb9a06337575031
+
+
+
+
+
+# done
 `done` react api  请求
 `done` mock  api
 `done` eslint-loader
-`done` api 处理： mock debug dev 
+`done` api 处理： mock debug dev    
     方案是: 
     1. mock环境，debug环境，dev环境都用同一个配置webpack-dev
     2. 这个配置设置webpack-dev-server.proxy 同时也引入mock data
@@ -56,8 +66,8 @@
 
 `done` mode参数背后的工作:https://webpack.js.org/concepts/mode/
 
-
-打包优化-bundle.js体积大小优化 todo    
+# doing
+打包优化-bundle.js体积大小优化     
     `done` 打包公共代码     @config
     `done` style.css文件太大 将字体分离出来 @plugin 
     `done` tree shaking uglify-js purify-css @plugin 
@@ -66,29 +76,12 @@
     `done` webpack 开启 gzip 压缩  @plugin 
 
 提高构建速度 todo 
-    `done` 使用yarn代替npm打包
+    `done` 使用yarn代替npm打包 
+    `done` HappyPack  @plugin 
     Webpack.DDLPlugin
-    HappyPack
+    
 
-http://taobaofed.org/blog/2016/12/08/happypack-source-code-analysis/
-https://github.com/amireh/happypack
+
 https://medium.com/@Erichain/%E4%BD%BF%E7%94%A8-happypack-%E5%92%8C-dllplugin-%E6%9D%A5%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84-webpack-%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6-7a1c41c5e78b
-
-
-
-
------
-back server 一键部署 
-参考create-react-app配置
-
-
-
-
-
-
-
-
-
-
 
 

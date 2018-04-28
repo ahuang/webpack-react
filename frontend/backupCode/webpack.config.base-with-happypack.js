@@ -62,7 +62,6 @@ module.exports = {
     plugins: [
         new HappyPack({
             id: 'js',
-            threads: 4,
             threadPool: happyThreadPool,
             loaders: [
                 {
@@ -75,13 +74,11 @@ module.exports = {
         }),
         new HappyPack({
             id: 'css',
-            threads: 4,
             threadPool: happyThreadPool,
             loaders: ['css-loader']
         }),
         new HappyPack({
             id: 'scss',
-            threads: 4,
             threadPool: happyThreadPool,
             loaders: ['css-loader', 'sass-loader']
         })
