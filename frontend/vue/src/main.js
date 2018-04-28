@@ -4,9 +4,9 @@ import VueRouter from 'vue-router';
 import Home from '@/containers/home.vue';
 import News from '@/containers/news.vue';
 import Music from '@/containers/music.vue';
+import store from '@/store';
 
 Vue.use(VueRouter);
-
 
 console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
 if (process.env.NODE_ENV === 'development') {
@@ -30,5 +30,10 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     router,
-    render: h => h(App)
+    store,
+    render: h => h(App),
+    mounted() {
+        // 用户信息所有页面公用, 通过action方法发请求获取用户数据,写入state
+        this.$store.dispatch('getCurrentUser');
+    }
 });

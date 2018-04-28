@@ -33,6 +33,8 @@ module.exports = {
          // 关闭规则(对后缀的规定)
          "import/extensions": "off",
         // 关闭规则(对require的规定)                
-        "global-require": "off",         
+        "global-require": "off",       
+        // 关闭规则(不允许给函数参数赋值)
+        "no-param-reassign": "off",          
     } 
 };
