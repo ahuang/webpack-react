@@ -3,8 +3,9 @@
         <h1>news...</h1>
     </div>
 </template>
+
 <script>
-export default {
-    name: 'News'
-};
+    export default {
+        name: 'News'
+    };
 </script>

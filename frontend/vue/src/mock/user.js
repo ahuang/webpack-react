@@ -2,8 +2,8 @@ import Mock from '@/mock/base';
 
 const user = {
     id: 1,
-    name: 'react-mock-name',
-    userName: 'react-mock-username',
+    name: 'vue-mock-name',
+    userName: 'vue-mock-username',
 };
 
 
