@@ -68,6 +68,7 @@ https://juejin.im/post/5a922e776fb9a06337575031
 
 # doing
 打包优化-bundle.js体积大小优化     
+    `done` 分离react    @config externals 效果不明显
     `done` 打包公共代码     @config
     `done` style.css文件太大 将字体分离出来 @plugin 
     `done` tree shaking uglify-js purify-css @plugin 
