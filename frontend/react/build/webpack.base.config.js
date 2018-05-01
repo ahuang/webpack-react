@@ -86,21 +86,6 @@ module.exports = {
             loaders: ['css-loader', 'sass-loader']
         })
     ],
-    // 4.0中已经删除CommonsChunkPlugin，替换成了splitChunks
-    optimization: {
-        runtimeChunk: {
-            name: 'runtime',
-        },
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'all'
-                }
-            }
-        }
-    },
     resolve: {
         alias: {
             '@': path.join(__dirname, '..', 'src')

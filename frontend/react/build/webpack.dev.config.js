@@ -6,8 +6,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
-const base = require('./webpack.config.base.js');
-const devEnv = require('./env-config.json').dev;
+const base = require('./webpack.base.config.js');
+const devEnv = require('./env.config.json').dev;
 
 console.log(`--- envConfig ${JSON.stringify(devEnv)} ---`);
 

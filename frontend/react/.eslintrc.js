@@ -36,6 +36,8 @@ module.exports = {
         // 关闭规则(强制要求拖尾逗号)
         "comma-dangle": "off",
         // 关闭规则(无法解析@符号)        
-        "import/no-unresolved": 0
+        "import/no-unresolved": 0,
+        // tmp 
+        "import/no-extraneous-dependencies": "off"
     }    
 };

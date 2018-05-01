@@ -1,10 +1,11 @@
 // webpack.config.prod.js
 
 const merge = require('webpack-merge');
-const base = require('./webpack.config.base.js');
+const base = require('./webpack.base.config.js');
 const path = require('path');
 const glob = require('glob-all');
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const webpack = require('webpack');
+// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,7 +21,7 @@ const webpackProdConfig = merge(base, {
     devtool: 'source-map',
     mode: 'production',
     plugins: [
-        new WebpackCleanupPlugin(),
+        // new WebpackCleanupPlugin(),
         new FileManagerPlugin({
             onEnd: {
                 copy: [{
@@ -32,7 +33,8 @@ const webpackProdConfig = merge(base, {
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.resolve(__dirname, '../index.html'),
-            template: path.resolve(__dirname, '../prod.html'),
+            // template: path.resolve(__dirname, '../prod.html'),
+            template: path.resolve(__dirname, '../prod1.html'),
         }),
         new PurifyCSSPlugin({
             paths: glob.sync([
@@ -48,9 +50,26 @@ const webpackProdConfig = merge(base, {
             minRatio: 0.8
         }),
         new ExtractTextPlugin('style.[chunkhash].css'),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('./manifest.json'),
+        }),
     ],
     optimization: {
-        minimize: true
+        minimize: true,
+        // 4.0中已经删除CommonsChunkPlugin，替换成了splitChunks
+        // runtimeChunk: {
+        //     name: 'runtime',
+        // },
+        // splitChunks: {
+        //     cacheGroups: {
+        //         commons: {
+        //             test: /[\\/]node_modules[\\/]/,
+        //             name: 'vendor',
+        //             chunks: 'all'
+        //         }
+        //     }
+        // }
     }
 });
 

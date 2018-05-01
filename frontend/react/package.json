@@ -4,8 +4,10 @@
   "description": "react",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --config ./build/webpack.config.dev.js",
-    "prod": "webpack --progress  --config ./build/webpack.config.prod.js",
+    "dev": "webpack-dev-server --open --config ./build/webpack.dev.config.js",
+    "ddl1": "webpack --progress  --config ./build/webpack.vendor.config.js",
+    "ddl2": "webpack --progress  --config ./build/webpack.prod.config.js",
+    "prod": "npm run ddl1 && npm run ddl2",
     "lint": "node_modules/eslint/bin/eslint.js --ext .js --ext .jsx  **/*; exit 0",
     "lint-fix": "node_modules/eslint/bin/eslint.js --fix --ext .js --ext .jsx  **/*; exit 0",
     "lint-html": "node_modules/eslint/bin/eslint.js   --ext .js --ext .jsx  **/*  -f html -o ./reports/lint-results.html; exit 0",
