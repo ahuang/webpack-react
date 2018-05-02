@@ -8,35 +8,9 @@
     3. 最后重启后端服务
 
 
-
-
-# 技术栈
-+ react@16.3.1  `npm install  react react-dom --save`  
-+ react-router-dom@4.2.2 `npm install react-router-dom --save`  
-+ immutable@3.8.2 `npm install immutable --save`  
-+ react-redux@5.0.7 redux@3.7.2   `npm install redux react-redux --save`  
-+ css `npm install node-sass sass-loader  css-loader style-loader extract-text-webpack-plugin --save-dev`  
-+ url-loader@1.0.1 file-loader@1.1.11 `npm install   file-loader  url-loader --save-dev`  
-+ copy-webpack-plugin@4.5.1 `npm install --save-dev copy-webpack-plugin`  
-+ axios@0.18.0  `npm install axios`  
-+ mockjs@1.0.1-beta3    `npm install mockjs`  
-
-
-
 # webpack包和配置
 + webpack-dev-server `sudo npm install webpack-dev-server -g  `  
 + webpack related `npm install webpack webpack-merge babel-loader babel-core babel-preset-es2015 babel-preset-react  --save-dev  `  
-
-
-# todo 
-back server 一键部署 
-参考create-react-app配置
-
-组件库webpack构建速度优化经验总结
-https://juejin.im/post/5a922e776fb9a06337575031
-
-
-
 
 
 # done
@@ -63,26 +37,27 @@ https://juejin.im/post/5a922e776fb9a06337575031
     方案2: 使用filemanager-webpack-plugin来做copy功能，支持build之后copy文件
     改问题的讨论 https://github.com/webpack-contrib/copy-webpack-plugin/issues/15
 `done` prod 代码压缩  
-
 `done` mode参数背后的工作:https://webpack.js.org/concepts/mode/
+`done` 打包优化
+    1. 减少文件体积
+        `done` 分离react    @config externals 效果不明显
+        `done` 打包公共代码     @config
+        `done` style.css文件太大 将字体分离出来 @plugin 
+        `done` tree shaking uglify-js purify-css @plugin 
+        `known` 懒加载 require.ensure 
+        `done` 长缓存优化 将hash替换为chunkhash，这样当chunk不变时，缓存依然有效 @config
+        `done` webpack 开启 gzip 压缩  @plugin 
+    2. 提高构建速度
+        `done` 使用yarn代替npm打包 
+        `done` HappyPack  @plugin 
+        `done` Webpack.DDLPlugin
+`done` back server 一键部署  使用命令 `npm run back`
 
-# doing
-打包优化-bundle.js体积大小优化     
-    `done` 分离react    @config externals 效果不明显
-    `done` 打包公共代码     @config
-    `done` style.css文件太大 将字体分离出来 @plugin 
-    `done` tree shaking uglify-js purify-css @plugin 
-    `known` 懒加载 require.ensure 
-    `done` 长缓存优化 将hash替换为chunkhash，这样当chunk不变时，缓存依然有效 @config
-    `done` webpack 开启 gzip 压缩  @plugin 
-
-提高构建速度 todo 
-    `done` 使用yarn代替npm打包 
-    `done` HappyPack  @plugin 
-    Webpack.DDLPlugin
-    
+# todo 
+参考create-react-app配置
+pre-commit
 
 
-https://medium.com/@Erichain/%E4%BD%BF%E7%94%A8-happypack-%E5%92%8C-dllplugin-%E6%9D%A5%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84-webpack-%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6-7a1c41c5e78b
-
+组件库webpack构建速度优化经验总结
+https://juejin.im/post/5a922e776fb9a06337575031
 

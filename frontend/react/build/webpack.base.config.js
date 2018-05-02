@@ -22,10 +22,12 @@ module.exports = {
         rules: [{
             test: /\.(js|jsx)$/, // 对js,jsx文件的处理
             exclude: /node_modules/,
+            include: path.join(__dirname, '..', 'src'),
             use: 'happypack/loader?id=js'
         }, {
             test: /\.css$/, // 对css文件的处理
             exclude: /node_modules/,
+            include: path.join(__dirname, '..', 'src'),
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: 'happypack/loader?id=css'
@@ -33,12 +35,14 @@ module.exports = {
         }, {
             test: /\.scss$/, // 对scss文件的处理
             exclude: /node_modules/,
+            include: path.join(__dirname, '..', 'src'),
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: 'happypack/loader?id=scss'
             }),
         }, {
             test: /\.(png|jpg|gif|jpeg)$/,
+            include: path.join(__dirname, '..', 'src'),
             exclude: /node_modules/,
             use: {
                 loader: 'url-loader',
@@ -49,6 +53,7 @@ module.exports = {
             }
         }, {
             test: /\.(woff|svg|eot|ttf)$/,
+            include: path.join(__dirname, '..', 'src'),
             exclude: /node_modules/,
             use: {
                 loader: 'url-loader',
@@ -68,6 +73,7 @@ module.exports = {
                 {
                     loader: 'babel-loader',
                     options: {
+                        cacheDirectory: true,
                         presets: ['es2015', 'react'],
                     }
                 }

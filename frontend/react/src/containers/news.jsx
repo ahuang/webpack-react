@@ -5,7 +5,7 @@ export default class News extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            titles: Immutale.fromJS(['放假通知', '天气预报', '交通状况', '美食天地']),
+            titles: Immutale.fromJS(['放假通知', '天气预报', '交通状况', '美食天地', '百科知识']),
         };
     }
 

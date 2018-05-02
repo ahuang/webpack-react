@@ -43,7 +43,7 @@ const webpackProdConfig = merge(base, {
         new CompressionWebpackPlugin({ // gzip 压缩
             asset: '[path].gz[query]',
             algorithm: 'gzip',
-            test: new RegExp('\\.(js|css)$'), // 压缩 js 与css
+            test: new RegExp('\\.(js|css)$'),
             threshold: 10240,
             minRatio: 0.8
         }),
