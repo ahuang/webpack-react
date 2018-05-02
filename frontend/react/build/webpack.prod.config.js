@@ -15,7 +15,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const webpackProdConfig = merge(base, {
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[chunkhash:8].js',
         publicPath: '/',
     },
     devtool: 'source-map',
@@ -47,7 +47,7 @@ const webpackProdConfig = merge(base, {
             threshold: 10240,
             minRatio: 0.8
         }),
-        new ExtractTextPlugin('style.[chunkhash].css'),
+        new ExtractTextPlugin('style.[chunkhash:8].css'),
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('./manifest.json'),

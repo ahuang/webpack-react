@@ -33,6 +33,7 @@ const webpackDevConfig = merge(base, {
         }
     },
     devtool: 'cheap-eval-source-map',
+    // devtool: 'cheap-module-source-map', // create-react-app config
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
