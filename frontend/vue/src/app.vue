@@ -1,6 +1,6 @@
 <template>
     <div class="app-wrap">
-        <Entry/>      
+        <Entry/>
         <router-view></router-view>
     </div>
 </template>

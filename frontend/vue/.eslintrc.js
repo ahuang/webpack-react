@@ -36,5 +36,6 @@ module.exports = {
         "global-require": "off",       
         // 关闭规则(不允许给函数参数赋值)
         "no-param-reassign": "off",          
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     } 
 };

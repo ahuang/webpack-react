@@ -1,6 +1,8 @@
 <template>
     <div class="home-module">
-        <h1 style="color: orange">vue's home! welcome  {{currentUser.name}} ( {{currentUser.userName}} )</h1>        
+        <h1 style="color: orange">
+            vue's home! welcome {{currentUser.name}} ( {{currentUser.userName}} )
+        </h1>
         <div v-if="!!isEdit">
             <input type="text" v-model="newUserName">
             <button @click="updateUserName">确定</button>
@@ -21,7 +23,7 @@
 
 <script>
     import '@/containers/home.scss';
-
+    
     export default {
         name: 'Home',
         data() {

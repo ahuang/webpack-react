@@ -1,4 +1,5 @@
-/src/icomoon/*
-/reports/*
-/dist/*
-/build/env-config.json
+src/icomoon
+reports
+dist
+build/env.config.json
+build/manifest.json

@@ -1,8 +1,10 @@
 const merge = require('webpack-merge');
+const path = require('path');
 const webpack = require('webpack');
-const base = require('./webpack.config.base.js');
+const base = require('./webpack.base.config.js');
 const devEnv = require('./env.config.json').dev;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const webpackDevConfig = merge(base, {
     // module: {
@@ -30,6 +32,14 @@ const webpackDevConfig = merge(base, {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css'),
+        new FileManagerPlugin({
+            onEnd: {
+                copy: [{
+                    source: path.resolve(__dirname, '../dev.html'),
+                    destination: path.resolve(__dirname, '../index.html')
+                }]
+            }
+        }),
     ],
 });
 
