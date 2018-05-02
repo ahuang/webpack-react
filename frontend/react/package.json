@@ -12,6 +12,7 @@
     "lint": "node_modules/eslint/bin/eslint.js --ext .js --ext .jsx  **/*; exit 0",
     "lint-fix": "node_modules/eslint/bin/eslint.js --fix --ext .js --ext .jsx  **/*; exit 0",
     "lint-html": "node_modules/eslint/bin/eslint.js   --ext .js --ext .jsx  **/*  -f html -o ./reports/lint-results.html; exit 0",
+    "precommit": "npm run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -49,6 +50,7 @@
     "filemanager-webpack-plugin": "^1.0.26",
     "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^0.14.3",
     "node-sass": "^4.8.3",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",

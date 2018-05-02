@@ -12,14 +12,15 @@ const devEnv = require('./env.config.json').dev;
 console.log(`--- envConfig ${JSON.stringify(devEnv)} ---`);
 
 const webpackDevConfig = merge(base, {
-    module: {
-        rules: [{
-            enforce: 'pre',
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader',
-        }],
-    },
+    // 通过husky使用commit之前进行eslint检查，关闭实时检查
+    // module: {
+    //     rules: [{
+    //         enforce: 'pre',
+    //         test: /\.(js|jsx)$/,
+    //         exclude: /node_modules/,
+    //         loader: 'eslint-loader',
+    //     }],
+    // },
     devServer: {
         contentBase: './',
         compress: true,
