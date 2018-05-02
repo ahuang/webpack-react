@@ -5,6 +5,7 @@ import Home from '@/containers/home.vue';
 import News from '@/containers/news.vue';
 import Music from '@/containers/music.vue';
 import store from '@/store';
+import '@/scss/index.scss';
 
 Vue.use(VueRouter);
 

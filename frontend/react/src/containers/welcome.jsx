@@ -47,7 +47,7 @@ class Welcome extends React.Component {
         return (
             <div className="welcome-module">
                 <h1>
-                    hello welcome! {this.showUserInfo()}
+                    react's home! welcome! {this.showUserInfo()}
                 </h1>
                 <p>
                     <input type="text" placeholder="请输入昵称" value={this.state.userNameInput} onChange={this.userNameChange} style={{ height: '30px' }} />

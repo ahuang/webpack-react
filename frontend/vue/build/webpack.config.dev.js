@@ -1,17 +1,18 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const base = require('./webpack.config.base.js');
-const devEnv = require('./env-config.json').dev;
+const devEnv = require('./env.config.json').dev;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const webpackDevConfig = merge(base, {
-    module: {
-        rules: [{
-            enforce: 'pre',
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader',
-        }],
-    },
+    // module: {
+    //     rules: [{
+    //         enforce: 'pre',
+    //         test: /\.(js|jsx)$/,
+    //         exclude: /node_modules/,
+    //         loader: 'eslint-loader',
+    //     }],
+    // },
     devServer: {
         contentBase: './',
         compress: true,
@@ -28,6 +29,7 @@ const webpackDevConfig = merge(base, {
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin('style.css'),
     ],
 });
 
