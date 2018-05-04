@@ -2,28 +2,20 @@ const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
 const base = require('./webpack.base.config.js');
-const devEnv = require('./env.config.json').dev;
+const env = require('./env.config.json').dev;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const webpackDevConfig = merge(base, {
-    // module: {
-    //     rules: [{
-    //         enforce: 'pre',
-    //         test: /\.(js|jsx)$/,
-    //         exclude: /node_modules/,
-    //         loader: 'eslint-loader',
-    //     }],
-    // },
     devServer: {
         contentBase: './',
         compress: true,
-        host: devEnv.devServerHost,
-        port: devEnv.devServerPort,
+        host: env.FrontHost,
+        port: env.FrontPort,
         hot: true,
         proxy: {
             '/api': {
-                target: `http://${devEnv.apiHost}:${devEnv.apiPort}`,
+                target: `http://${env.BackHost}:${env.BackPort}`,
             },
         },
     },

@@ -53,11 +53,4 @@
         `done` Webpack.DDLPlugin
 `done` back server 一键部署  使用命令 `npm run back`
 
-# todo 
-参考create-react-app配置
-pre-commit
-
-
-组件库webpack构建速度优化经验总结
-https://juejin.im/post/5a922e776fb9a06337575031
 

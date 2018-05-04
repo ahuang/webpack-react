@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "program": "${workspaceRoot}/backend/server/app.js",
+            "cwd": "${workspaceRoot}/backend/server",
+            "watch": true,
+            "env": {
+                "NODE_ENV": "development",
+                "KEY": "dev",
+                "HOST": "localhost",
+                "PORT": 5000,
+            },
+            "env_production": {
+                "NODE_ENV": "production",
+                "KEY": "prod",
+                "HOST": "localhost",
+                "PORT": 5001,
+            }
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "附加到进程",
+            "port": 5858
+        }
+    ]
+}

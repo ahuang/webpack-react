@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "pm2 start pm2.json --env development",
+    "prod": "pm2 start pm2.json --env production",
+    "stop": "pm2 kill",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +16,10 @@
     "ejs": "^2.5.8",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
+    "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
     "koa-static-cache": "^5.1.2",
-    "koa-views": "^6.1.4"
+    "koa-views": "^6.1.4",
+    "moment": "^2.22.1"
   }
 }

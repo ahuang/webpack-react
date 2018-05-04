@@ -1,7 +1,7 @@
 <template>
     <div class="home-module">
         <h1 style="color: orange">
-            vue's home! welcome {{currentUser.name}} ( {{currentUser.userName}} )
+            vue's home! welcome  {{currentUser.userName}} 
         </h1>
         <div v-if="!!isEdit">
             <input type="text" v-model="newUserName">

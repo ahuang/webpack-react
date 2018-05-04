@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '@/containers/home.vue';
 import News from '@/containers/news.vue';
 import Music from '@/containers/music.vue';
+import Login from '@/containers/login.vue';
 import store from '@/store';
 import '@/scss/index.scss';
 
@@ -11,8 +12,8 @@ Vue.use(VueRouter);
 
 console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
 if (process.env.NODE_ENV === 'development') {
-    require('./mock/music.js');
-    require('./mock/user.js');
+    // require('./mock/music.js');
+    // require('./mock/user.js');
 }
 
 const router = new VueRouter({
@@ -25,6 +26,9 @@ const router = new VueRouter({
     }, {
         path: '/music',
         component: Music
+    }, {
+        path: '/login',
+        component: Login
     }]
 });
 

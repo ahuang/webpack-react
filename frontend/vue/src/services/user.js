@@ -8,6 +8,9 @@ const UserService = {
     setUserName(userId, userName) {
         return new Promise((resolve, reject) => putData(`${prefixUrl}/user/${userId}`, { userName }).then(response => resolve(response.data), error => reject(error)));
     },
+    doLogin(username, password) {
+        return new Promise((resolve, reject) => putData(`${prefixUrl}/user/login`, { username, password }).then(response => resolve(response.data), error => reject(error)));
+    }
 };
 
 export default UserService;
