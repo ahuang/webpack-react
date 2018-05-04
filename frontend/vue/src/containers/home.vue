@@ -32,7 +32,7 @@
                 newUserName: ''
             };
         },
-        mounted(){
+        mounted() {
             this.$store.dispatch('getCurrentUser');
         },
         computed: {

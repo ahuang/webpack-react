@@ -9,10 +9,10 @@
             </li>
             <li class="menu">
                 <router-link to="news"><i class="icon-bullhorn" /> News</router-link>
-            </li>            
+            </li>
             <li class="menu" style="float: right;  margin-right: 20px">
                 <a href="/api/v1/user/logout"> 退出 </a>
-            </li>            
+            </li>
             <li class="menu" style="float: right;">
                 <a href="#" v-if="!!currentUser.userName">{{currentUser.userName}}  </a>
                 <router-link v-else to="login"> 登录 {{currentUser.userName}} </router-link>
