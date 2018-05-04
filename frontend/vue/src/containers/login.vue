@@ -10,7 +10,7 @@
                 <input type="password" v-model="password" class="ipt">
             </div>
             <div class="row sub">
-                <input type="submit" value="登 录"  class="btn">                
+                <input type="submit" value="登 录"  class="btn">
             </div>
             
         </form>
@@ -23,29 +23,28 @@
 
     export default {
         name: 'News',
-        data(){
+        data() {
             return {
                 username: '',
                 password: ''
-            }
+            };
         },
         methods: {
-            doLogin(){
-                const cb = 'http://localhost:9001/';
+            doLogin() {
+                // const cb = 'http://localhost:9001/';
                 UserService.doLogin(this.username, this.password).then((data) => {
-                    if(data.code === 200){
-                        if(data.message === 'SUCCESS'){
-                            location.href = "/";
-                        }else{
+                    if (data.code === 200) {
+                        if (data.message === 'SUCCESS') {
+                            window.location.href = '/';
+                        } else {
                             console.log(data.result);
                         }
                     }
-                },(error) => {
+                }, (error) => {
                     console.log(error);
-                })
+                });
             }
         }
     };
 </script>
-
 

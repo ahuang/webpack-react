@@ -12,10 +12,10 @@
             </li>
             <li class="menu" style="float: right; margin-right: 20px">
                 <router-link to="login"> 登录 </router-link>
-            </li>     
+            </li>
             <li class="menu" style="float: right;">
                 <a href="/api/v1/user/logout"> 退出 </a>
-            </li>                       
+            </li>
         </ul>
     </div>
 </template>
