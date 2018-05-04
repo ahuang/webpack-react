@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pm2 start pm2.json --env development",
-    "prod": "pm2 start pm2.json --env production",
-    "stop": "pm2 kill",    
+    "dev": "pm2 kill && pm2 start pm2.json --env development && pm2 logs",
+    "prod": "pm2 kill && pm2 start pm2.json --env production && pm2 logs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

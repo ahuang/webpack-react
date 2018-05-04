@@ -32,6 +32,9 @@
                 newUserName: ''
             };
         },
+        mounted(){
+            this.$store.dispatch('getCurrentUser');
+        },
         computed: {
             currentUser() {
                 // 读取state里的用户信息

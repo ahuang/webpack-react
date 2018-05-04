@@ -31,7 +31,6 @@
         },
         methods: {
             doLogin() {
-                // const cb = 'http://localhost:9001/';
                 UserService.doLogin(this.username, this.password).then((data) => {
                     if (data.code === 200) {
                         if (data.message === 'SUCCESS') {

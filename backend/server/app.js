@@ -7,8 +7,8 @@ const staticServer = require('koa-static');
 const staticCache = require('koa-static-cache');
 const BackHost = process.env.HOST;
 const BackPort = process.env.PORT;
-const moment = require('moment');
 const session = require('koa-session');
+const auth = require('./middleware/auth.js');
 
 app.keys = ['some secret hurr'];
 app.use(session(app));
@@ -26,6 +26,7 @@ app.use(staticCache(path.join(__dirname, 'dist'), {
 
 app.use(staticServer(__dirname + '/dist'))
 
+app.use(auth());
 
 const user = {
   id: 1,
@@ -37,10 +38,6 @@ const user = {
 
 // render
 app.use(async function (ctx) {
-  console.log(`\r\n \r\n \r\n ### ${ctx.method} ${ctx.path} ${moment(new Date()).format()} ${ctx.session.user}`);
-
-  
-
   if (ctx.path === '/') {
     await ctx.render('index');
   } else if (ctx.path === '/api/v1/movies') {
@@ -86,6 +83,8 @@ app.use(async function (ctx) {
       result: null,
     };
   } else if (ctx.path === '/api/v1/user/login') {
+    console.log("username:", ctx.request.body.username);
+    console.log("password:", ctx.request.body.password);
     const username = ctx.request.body.username;
     const password = ctx.request.body.password;
     // todo 简单校验
