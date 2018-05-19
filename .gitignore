@@ -4,3 +4,5 @@ frontend/vue/node_modules
 frontend/vue/dist/
 backend/server/node_modules/
 backend/server/dist/
+frontend/vue/package-lock.json
+frontend/react/package-lock.json
