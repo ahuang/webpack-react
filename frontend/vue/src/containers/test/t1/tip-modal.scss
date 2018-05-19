@@ -1,0 +1,25 @@
+.m-tip-modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0,0, 0.3);
+    .content{
+        width: 400px;
+        height: 200px;
+        box-shadow: 10px 10px 5px #888;
+        background: #fff;
+        margin: 100px auto;
+        padding: 10px;
+        text-align: center;
+        button{
+            background: darkgray;
+            padding: 5px;
+            color: #fff;
+            margin: 2px;
+            box-shadow: 2px 2px 1px #333;            
+        }
+    }
+
+}
