@@ -12,7 +12,7 @@
             </li>
             <li class="menu">
                 <router-link to="test"><i class="icon-book" /> Test</router-link>
-            </li>            
+            </li>
             <li class="menu" style="float: right;  margin-right: 20px">
                 <a href="/api/v1/user/logout"> 退出 </a>
             </li>

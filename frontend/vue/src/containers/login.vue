@@ -12,10 +12,6 @@
             <div class="row sub">
                 <input type="submit" value="登 录"  class="btn">
             </div>
-            
-
-
-
 
 
         </form>
