@@ -19,8 +19,8 @@
     </div>
 </template>
 <script>
-    import TipModal from '@/containers/test/t1/tip-modal.vue';
-    import '@/containers/test/t1/test1.scss';
+    import TipModal from '@/containers/test/t1-props/tip-modal.vue';
+    import '@/containers/test/t1-props/index.scss';
 
     export default {
         name: 'test1',

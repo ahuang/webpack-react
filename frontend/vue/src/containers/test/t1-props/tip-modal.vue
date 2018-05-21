@@ -22,7 +22,7 @@
     </div>
 </template>
 <script>
-    import '@/containers/test/t1/tip-modal.scss';
+    import '@/containers/test/t1-props/tip-modal.scss';
 
     export default {
         name: 'tip-modal',
