@@ -16,6 +16,7 @@ const webpackDevConfig = merge(base, {
         proxy: {
             '/api': {
                 target: `http://${env.BackHost}:${env.BackPort}`,
+                logLevel: 'debug'
             },
         },
     },
