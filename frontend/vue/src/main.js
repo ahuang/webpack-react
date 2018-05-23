@@ -13,6 +13,7 @@ Vue.use(VueRouter);
 
 console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
 if (process.env.NODE_ENV === 'development') {
+    require('./mock/weather.js');
     require('./mock/music.js');
     require('./mock/user.js');
 }
