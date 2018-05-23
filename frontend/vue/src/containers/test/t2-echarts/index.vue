@@ -1,6 +1,6 @@
 <template>
     <div class="m-t2">
-        <h1>echarts</h1>
+        <h3>echarts</h3>
         <div class="city">
             <label for="beijing">北京</label>
             <input id="beijing" value="beijing" type="radio" name="city"  @click="changeCity" checked/>

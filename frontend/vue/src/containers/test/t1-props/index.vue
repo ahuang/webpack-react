@@ -1,6 +1,6 @@
 <template>
     <div class="m-test">
-        <h1>父子组件通信</h1>
+        <h3>父子组件通信</h3>
         <div class="commu">
             <TipModal
                 v-model="showTipModal"
