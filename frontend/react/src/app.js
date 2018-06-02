@@ -18,6 +18,18 @@ if (process.env.NODE_ENV === 'development') {
     require('./mock/user.js');
 }
 
+//  箭头函数语法需要babel-preset-env转译
+const example = {
+    normal: function() { console.log('normal this: ', this); },
+    arrow: () => { console.log('arrow this: ', this); },
+    shorthand() { console.log('shorthand this: ', this); }
+};
+new example.normal();
+new example.arrow();
+new example.shorthand();
+
+
+//  JSX语法需要babel-preset-react转译
 ReactDOM.render(
     <Provider store={store}>
         <div>
