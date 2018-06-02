@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 //  箭头函数语法需要babel-preset-env转译
 const example = {
-    normal: function() { console.log('normal this: ', this); },
+    normal: function () { console.log('normal this: ', this); },
     arrow: () => { console.log('arrow this: ', this); },
     shorthand() { console.log('shorthand this: ', this); }
 };
