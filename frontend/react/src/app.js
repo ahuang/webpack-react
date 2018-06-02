@@ -11,6 +11,7 @@ import createStore from '@/store';
 import '@/scss/index.scss';
 
 import '@/test/babelTest.js';
+import '@/test/babelFlowTest.js';
 
 const store = createStore();
 

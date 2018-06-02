@@ -3,6 +3,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');
 const HappyPack = require('happypack');
+const FlowBabelWebpackPlugin= require('flow-babel-webpack-plugin')
 
 const happyThreadPool = HappyPack.ThreadPool({
     size: os.cpus().length
@@ -89,7 +90,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
-                        presets: ['es2015'],
+                        presets: [],
                     }
                 }
             ]
@@ -105,6 +106,7 @@ module.exports = {
             threads: 4,
             threadPool: happyThreadPool,
             loaders: ['css-loader', 'sass-loader']
-        })
+        }),
+        new FlowBabelWebpackPlugin()
     ],
 };

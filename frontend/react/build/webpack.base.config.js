@@ -8,6 +8,8 @@ const happyThreadPool = HappyPack.ThreadPool({
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // css样式从js文件中分离出来
 // const webpack = require('webpack');
 
+const FlowBabelWebpackPlugin= require('flow-babel-webpack-plugin')
+
 
 module.exports = {
     entry: {
@@ -90,7 +92,8 @@ module.exports = {
             threads: 4,
             threadPool: happyThreadPool,
             loaders: ['css-loader', 'sass-loader']
-        })
+        }),
+        new FlowBabelWebpackPlugin()        
     ],
     resolve: {
         alias: {

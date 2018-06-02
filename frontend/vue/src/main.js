@@ -8,6 +8,8 @@ import Login from '@/containers/login.vue';
 import Test from '@/containers/test/index.vue';
 import store from '@/store';
 import '@/scss/index.scss';
+import '@/containers/test/babel/babelTest.js';
+import '@/containers/test/babel/babelFlowTest.js';
 
 Vue.use(VueRouter);
 
