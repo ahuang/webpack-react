@@ -46,9 +46,8 @@ class Welcome extends React.Component {
     render() {
         return (
             <div className="welcome-module">
-                <h1>
-                    react &apos;s home! welcome! {this.showUserInfo()}
-                </h1>
+                <h1>react &apos;s home! welcome! </h1>
+                <h2 style={{color: 'yellowgreen'}}>{this.showUserInfo()}</h2>
                 <p>
                     <input type="text" placeholder="请输入昵称" value={this.state.userNameInput} onChange={this.userNameChange} style={{ height: '30px' }} />
                     <button className="user-btn" onClick={this.setUserName} >设置用户名</button>
