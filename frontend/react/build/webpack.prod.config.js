@@ -47,7 +47,12 @@ const webpackProdConfig = merge(base, {
             threshold: 10240,
             minRatio: 0.8
         }),
-        new ExtractTextPlugin('style.[chunkhash:8].css'),
+        // new ExtractTextPlugin('style.[chunkhash:8].css'),
+        // 为了支持dynamic import 设置allChunks: true
+        new ExtractTextPlugin({
+            filename: 'style.[chunkhash:8].css', 
+            allChunks: true
+        }),
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('./manifest.json'),

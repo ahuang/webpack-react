@@ -11,7 +11,7 @@ const devEnv = require('./env.config.json').dev;
 
 console.log(`--- envConfig ${JSON.stringify(devEnv)} ---`);
 
-const webpackDevConfig = merge(base, {
+const webpackDevConfig = merge(base, {   
     // 通过husky使用commit之前进行eslint检查，关闭实时检查
     // module: {
     //     rules: [{
@@ -38,7 +38,13 @@ const webpackDevConfig = merge(base, {
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('style.css'),
+        // new ExtractTextPlugin('style.css'),
+        // 为了支持dynamic import 设置allChunks: true
+        new ExtractTextPlugin({
+            filename: 'style.css', 
+            allChunks: true
+        }),        
+    
         new FileManagerPlugin({
             onEnd: {
                 copy: [{

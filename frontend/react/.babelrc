@@ -1,4 +1,4 @@
 {
     "presets": ["react","env"],
-    "plugins" : ["transform-flow-comments"]
+    "plugins" : ["transform-flow-comments", "syntax-dynamic-import"]
 }
