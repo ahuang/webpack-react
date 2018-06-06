@@ -1,17 +1,15 @@
 <template>
-    <div>
+    <div class="m-test">
+        <p class="title">测试区域～～～</p>
         <!-- 动态组件 Test1 Test2 Test3-->
-        <component is="Test3"></component>
-
-
-
-
+        <component is="Test1"></component>
     </div>
 </template>
 <script>
     import Test1 from '@/containers/test/t1-props/index.vue';
     import Test2 from '@/containers/test/t2-echarts/index.vue';
     import Test3 from '@/containers/test/t3-refs/index.vue';
+    import '@/containers/test/index.scss';
 
     export default {
         name: 'test',

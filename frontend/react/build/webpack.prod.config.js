@@ -53,7 +53,7 @@ const webpackProdConfig = merge(base, {
             {
                 filename: "[name].[chunkhash:8].css",
                 chunkFilename: "[id].[chunkhash:8].css",                
-              }
+                }
         ),
         // new ExtractTextPlugin('style.[chunkhash:8].css'),
         // 为了支持dynamic import 设置allChunks: true 有css样式重复问题

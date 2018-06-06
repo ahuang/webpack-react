@@ -1,43 +1,23 @@
 import Vue from 'vue';
 import App from '@/app.vue';
-import VueRouter from 'vue-router';
-import Home from '@/containers/home.vue';
-import News from '@/containers/news.vue';
-import Music from '@/containers/music.vue';
-import Login from '@/containers/login.vue';
-import Test from '@/containers/test/index.vue';
 import store from '@/store';
+import router from '@/router/index.js';
 import '@/scss/index.scss';
-import '@/containers/test/babel/babelTest.js';
-import '@/containers/test/babel/babelFlowTest.js';
 
-Vue.use(VueRouter);
 
-console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
+
+
+// 数据mock
+// console.log(`---process.env.NODE_ENV ${process.env.NODE_ENV} ---`);
 if (process.env.NODE_ENV === 'development') {
     require('./mock/weather.js');
     require('./mock/music.js');
     require('./mock/user.js');
 }
 
-const router = new VueRouter({
-    routes: [{
-        path: '/',
-        component: Home
-    }, {
-        path: '/news',
-        component: News
-    }, {
-        path: '/music',
-        component: Music
-    }, {
-        path: '/test',
-        component: Test
-    }, {
-        path: '/login',
-        component: Login
-    }]
-});
+// // 测试babel
+// import '@/containers/test/babel/babelTest.js';
+// import '@/containers/test/babel/babelFlowTest.js';
 
 new Vue({
     el: '#app',
