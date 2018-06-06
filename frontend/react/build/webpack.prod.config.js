@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const webpackProdConfig = merge(base, {
     output: {
         path: path.join(__dirname, '..', 'dist'),
@@ -47,12 +48,19 @@ const webpackProdConfig = merge(base, {
             threshold: 10240,
             minRatio: 0.8
         }),
+        // 为了支持dynamic import  并且css样式打包不重复方案
+        new ExtractCssChunks(
+            {
+                filename: "[name].[chunkhash:8].css",
+                chunkFilename: "[id].[chunkhash:8].css",                
+              }
+        ),
         // new ExtractTextPlugin('style.[chunkhash:8].css'),
-        // 为了支持dynamic import 设置allChunks: true
-        new ExtractTextPlugin({
-            filename: 'style.[chunkhash:8].css', 
-            allChunks: true
-        }),
+        // 为了支持dynamic import 设置allChunks: true 有css样式重复问题
+        // new ExtractTextPlugin({
+        //     filename: 'style.[chunkhash:8].css', 
+        //     allChunks: true
+        // }),        
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('./manifest.json'),

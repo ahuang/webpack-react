@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 // 连接store和react
 import { connect } from 'react-redux';
@@ -7,7 +5,7 @@ import { appActions } from '@/store/app/index';
 
 import '@/containers/welcome.scss';
 import autumnPic from '@/images/autumn.jpg';
-
+import City from '@/components/city.jsx';
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -48,6 +46,7 @@ class Welcome extends React.Component {
             <div className="welcome-module">
                 <h1>react &apos;s home! welcome! </h1>
                 <h2 style={{color: 'yellowgreen'}}>{this.showUserInfo()}</h2>
+                <City/>
                 <p>
                     <input type="text" placeholder="请输入昵称" value={this.state.userNameInput} onChange={this.userNameChange} style={{ height: '30px' }} />
                     <button className="user-btn" onClick={this.setUserName} >设置用户名</button>

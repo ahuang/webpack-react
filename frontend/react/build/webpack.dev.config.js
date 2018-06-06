@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 const base = require('./webpack.base.config.js');
 const devEnv = require('./env.config.json').dev;
@@ -38,13 +39,17 @@ const webpackDevConfig = merge(base, {
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        // new ExtractTextPlugin('style.css'),
-        // 为了支持dynamic import 设置allChunks: true
-        new ExtractTextPlugin({
+        // 为了支持dynamic import  并且css样式打包不重复方案
+        new ExtractCssChunks({
             filename: 'style.css', 
-            allChunks: true
-        }),        
-    
+            hot: true
+        }),          
+        // // new ExtractTextPlugin('style.css'),
+        // // 为了支持dynamic import 设置allChunks: true
+        // new ExtractTextPlugin({
+        //     filename: 'style.css', 
+        //     allChunks: true
+        // }),      
         new FileManagerPlugin({
             onEnd: {
                 copy: [{

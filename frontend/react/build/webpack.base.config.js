@@ -1,12 +1,13 @@
 const path = require('path');
 const os = require('os');
 const HappyPack = require('happypack');
+const webpack = require('webpack');
 
 const happyThreadPool = HappyPack.ThreadPool({
     size: os.cpus().length
 });
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // css样式从js文件中分离出来
-// const webpack = require('webpack');
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 const FlowBabelWebpackPlugin= require('flow-babel-webpack-plugin')
 
@@ -26,22 +27,18 @@ module.exports = {
             exclude: /node_modules/,
             include: path.join(__dirname, '..', 'src'),
             use: 'happypack/loader?id=js'
-        }, {
-            test: /\.css$/, // 对css文件的处理
+        },{
+            test: /\.(css|scss)$/, // 对scss文件的处理
             exclude: /node_modules/,
             include: path.join(__dirname, '..', 'src'),
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: 'happypack/loader?id=css'
-            }),
-        }, {
-            test: /\.scss$/, // 对scss文件的处理
-            exclude: /node_modules/,
-            include: path.join(__dirname, '..', 'src'),
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: 'happypack/loader?id=scss'
-            }),
+            use: [
+                ExtractCssChunks.loader,
+                'happypack/loader?id=scss'
+              ]             
+            // use: ExtractTextPlugin.extract({
+            //     fallback: 'style-loader',
+            //     use: 'happypack/loader?id=scss'
+            // }),
         }, {
             test: /\.(png|jpg|gif|jpeg)$/,
             include: path.join(__dirname, '..', 'src'),
@@ -80,12 +77,6 @@ module.exports = {
                     }
                 }
             ]
-        }),
-        new HappyPack({
-            id: 'css',
-            threads: 4,
-            threadPool: happyThreadPool,
-            loaders: ['css-loader']
         }),
         new HappyPack({
             id: 'scss',

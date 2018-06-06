@@ -10,8 +10,6 @@ import createStore from '@/store';
 // import Video from '@/containers/video.jsx';
 // import Login from '@/containers/login.jsx';
 
-
-// 动态加载方案
 // 高阶组件，统一处理loading和error
 const MyLoadingComponent = ({ isLoading, error }) => {    
     if (isLoading) { // Handle the loading state
@@ -24,7 +22,7 @@ const MyLoadingComponent = ({ isLoading, error }) => {
     }
 };
 
-// // 按路由拆分代码
+// dynamic import 动态加载方案 按路由拆分代码
 const Login = Loadable({
     loader: () => import('@/containers/login.jsx'),
     loading: MyLoadingComponent
@@ -33,19 +31,14 @@ const Welcome = Loadable({
     loader: () => import('@/containers/welcome.jsx'),
     loading: MyLoadingComponent
 });
-
 const News = Loadable({
     loader: () => import('@/containers/news.jsx'),
     loading: MyLoadingComponent
 });
-
 const Video = Loadable({
     loader: () => import('@/containers/video.jsx'),
     loading: MyLoadingComponent
 });
-
-
-
 
 const appRouter = () => (
     <Provider store={createStore()}>
