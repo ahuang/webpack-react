@@ -16,6 +16,7 @@ const webpackProdConfig = merge(base, {
     output: {
         path: path.join(__dirname, '..', 'dist'),
         filename: '[name].[chunkhash:8].js',
+        chunkFilename: "[id].[name].[chunkHash].js",
         publicPath: '/',
     },
     devtool: 'source-map',
@@ -47,7 +48,7 @@ const webpackProdConfig = merge(base, {
             threshold: 10240,
             minRatio: 0.8
         }),
-        new ExtractTextPlugin('style.[chunkhash:8].css'),
+        new ExtractTextPlugin('[name].[chunkhash:8].css'),
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('./manifest.json'),
