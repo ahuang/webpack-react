@@ -41,16 +41,19 @@
         methods: {
             init(){
                 console.log('init...');
-                this.myStudents = this.value;
-                this.myBooks = this.books;
+                this.myStudents = JSON.parse(JSON.stringify(this.value));
+                this.myBooks = JSON.parse(JSON.stringify(this.books));
             },
             updateValue(){
                 console.log('\r\nchild update myStudents', this.myStudents);
                 this.myStudents.push('student_cc');
+                // this.$emit('updateStudents', this.myStudents)
+                this.$emit('input', this.myStudents);
             },
             updateBooks(){
-                console.log('\r\nchild update  myBooks', this.myStudents);
+                console.log('\r\nchild update  myBooks', this.myBooks);
                 this.myBooks.push('new');
+                 this.$emit('updateBooks', this.myBooks)
             }
         }
     }

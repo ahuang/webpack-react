@@ -10,8 +10,8 @@
         <button @click="addBook">父组件addBook</button>
         <hr>
         <child1 
-            v-model="students" @updateStudent="updateStudent"
-            :books="books" 
+            v-model="students"@updateStudents="updateStudents"
+            :books="books" @updateBooks="updateBooks"
         ></child1>
     </div>
 </template>
@@ -28,8 +28,11 @@
             }
         },
         methods: {
-            updateStudent(newData){
+            updateStudents(newData){
                 this.students = JSON.parse(JSON.stringify(newData));
+            },
+            updateBooks(newData){
+                this.books = JSON.parse(JSON.stringify(newData));
             },
             addStudent(){
                 console.log('\r\nparent addStudent', this.students);
