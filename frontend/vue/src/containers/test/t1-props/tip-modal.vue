@@ -33,6 +33,31 @@
             updateName: Function,
             age: Number
         },
+        data(){
+            return {
+            }
+        },
+        watch: {
+            'value':{
+                immediate: true,
+                handler(newVal, oldVal){
+                    if(newVal){
+                        // 只有弹窗出现才调用init
+                        this.init();
+                    }
+                }
+            }
+        },
+        mounted(){
+            // 页面加载后就调用init
+            // this.init();
+        },
+        methods: {
+            init(){
+                console.log('\r\ninit');
+                console.log('***this.value', JSON.stringify(this.value));                
+            }
+        },
         computed: {
             myAge: {
                 get() {
