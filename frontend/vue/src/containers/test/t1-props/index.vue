@@ -5,16 +5,19 @@
             <TipModal
                 v-model="showTipModal"
 
-                :message="message" @updateMessage="updateMessage"
-
-                :name="name" :updateName="updateName"
-
-                :age="age"  @updateAge="updateAge"
+                :name="name" 
+                :updateNameFun="updateName" 
+                @updateNameEmit="updateName"
+                :age="age"  
+                @updateAge="updateAge"
+                                 
+                :message="message" 
+                @updateMessage="updateMessage"
             ></TipModal>
-            <p>showTipModal<span style="color:blue;font-weight:bolder">{{showTipModal}}</span></p>
-            <p>message <span style="color: blue; font-weight: bolder"> {{message}} </span></p>
-            <p>name <span style="color: blue; font-weight: bolder"> {{name}} </span></p>
-            <p>age <span style="color: blue; font-weight: bolder"> {{age}} </span></p>
+            <p>showTipModal<span class="text">  {{showTipModal}}</span></p>
+            <p>name <span class="text"> {{name}} </span></p>
+            <p>age <span class="text"> {{age}} </span></p>
+            <p>message <span class="text"> {{message}} </span></p>            
             <button @click="openTipModal">弹窗</button>
         </div>
     </div>
@@ -22,15 +25,14 @@
 <script>
     import TipModal from '@/containers/test/t1-props/tip-modal.vue';
     import '@/containers/test/t1-props/index.scss';
-
     export default {
         name: 'test1',
         components: { TipModal },
         data() {
             return {
                 showTipModal: false,
-                message: 'haha',
-                name: '张三',
+                message: {content: '消息1', isFake: false},
+                name: {cn: '张三', en: 'zhangsan'},
                 age: 20,
             };
         },
@@ -38,15 +40,15 @@
             openTipModal() {
                 this.showTipModal = true;
             },
-            updateMessage(data) {
-                this.message = data;
-            },
             updateName(data) {
-                this.name = data;
+                this.name.cn = data;
             },
             updateAge(data) {
                 this.age = data;
             },
+            updateMessage(data) {
+                this.message.content = data;
+            },            
         }
     };
 </script>

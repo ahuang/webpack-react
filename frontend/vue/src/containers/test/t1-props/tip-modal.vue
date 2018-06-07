@@ -1,40 +1,46 @@
 <template>
     <div class="m-tip-modal" v-if="value">
         <div class="content">
-            <h6>这是个弹窗</h6>
-            <div>
+            <h3>这是个弹窗</h3>
+            <div class="line">
                 value:  <span style="color: red; font-weight: bolder">{{value}}</span>
                 <button @click="$emit('input', false)">关闭弹窗</button>
             </div>
-            <div>
-                message:  <span style="color: red; font-weight: bolder">{{message}}</span>
-                <button  @click="$emit('updateMessage', '新message')">update</button>
-            </div>
-            <div>
-                name:  <span style="color: red; font-weight: bolder">{{name}}</span>
-                <button  @click="updateName('新name')">update</button>
-            </div>
-            <div>
-                age:  <span style="color: red; font-weight: bolder">{{myAge}}</span>
-                <button  @click="myAge = 100">update</button>
+            <div class="line">
+                <div>name.cn:  <span style="color: red; font-weight: bolder">{{name.cn}}</span>
+                    <button  @click="$emit('updateNameEmit', 'emitName')">update1</button>
+                    <button  @click="updateNameFun('funName')">update2</button> 
+                </div>
+                <div>name.en:  <span style="color: red; font-weight: bolder">{{myName.en}}</span>
+                    <button  @click="()=>{this.myName.en = 'modifyName'}">update3</button>
+                </div>
+                <div>age:  <span style="color: red; font-weight: bolder">{{myAge}}</span>
+                    <button  @click="myAge = 100">update</button>
+                </div>                    
+            </div>            
+            <div class="line">
+                message:  <span style="color: red; font-weight: bolder">{{myMessage.content}}</span>
+                <button  @click="()=>{ const newMsg = '消息2';this.myMessage.content = newMsg; this.$emit('updateMessage', newMsg);
+                    }">update</button>
             </div>
         </div>
     </div>
 </template>
 <script>
     import '@/containers/test/t1-props/tip-modal.scss';
-
     export default {
         name: 'tip-modal',
         props: {
             value: Boolean,
-            message: String,
-            name: String,
-            updateName: Function,
+            message: Object,
+            name: Object,
+            updateNameFun: Function,
             age: Number
         },
         data(){
             return {
+                myMessage: {},
+                myName: {}
             }
         },
         watch: {
@@ -42,30 +48,21 @@
                 immediate: true,
                 handler(newVal, oldVal){
                     if(newVal){
-                        // 只有弹窗出现才调用init
-                        this.init();
+                        this.init();// 只有弹窗出现才调用init
                     }
                 }
             }
         },
-        mounted(){
-            // 页面加载后就调用init
-            // this.init();
-        },
         methods: {
             init(){
-                console.log('\r\ninit');
-                console.log('***this.value', JSON.stringify(this.value));                
-            }
+                this.myName = this.name; // 数据共享
+                this.myMessage = JSON.parse(JSON.stringify(this.message)); // 深拷贝，数据独立
+            },
         },
         computed: {
             myAge: {
-                get() {
-                    return this.age;
-                },
-                set(val) {
-                    this.$emit('updateAge', val);
-                }
+                get() {return this.age;},
+                set(val) {this.$emit('updateAge', val);}
             }
         },
     };

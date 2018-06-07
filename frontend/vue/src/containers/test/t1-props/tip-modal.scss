@@ -6,13 +6,18 @@
     right: 0;
     background: rgba(0, 0,0, 0.3);
     .content{
-        width: 400px;
-        height: 200px;
+        width: 600px;
+        height: 300px;
         box-shadow: 10px 10px 5px #888;
         background: #fff;
-        margin: 100px auto;
-        padding: 10px;
-        text-align: center;
+        margin: 400px auto;
+        padding: 30px;
+        text-align: left;
+        .line{
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
         button{
             background: darkgray;
             padding: 5px;
