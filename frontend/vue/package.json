@@ -8,8 +8,8 @@
     "ddl1": "webpack --progress  --config ./build/webpack.vendor.config.js",
     "ddl2": "webpack --progress  --config ./build/webpack.prod.config.js",
     "prod": "npm run ddl1 && npm run ddl2",
-    "back": "npm run prod && rm -rf  ../../backend/server/dist && cp -r ./dist ../../backend/server/",    
-    "ana": "webpack --progress  --config ./build/webpack.analyse.config.js",    
+    "back": "npm run prod && rm -rf  ../../backend/server/dist && cp -r ./dist ../../backend/server/",
+    "ana": "webpack --progress  --config ./build/webpack.analyse.config.js",
     "analyse": "npm run ddl1 && npm run ana",
     "lint": "node_modules/eslint/bin/eslint.js --ext .js --ext .vue  **/*; exit 0",
     "lint-fix": "node_modules/eslint/bin/eslint.js --fix --ext .vue --ext .jsx  **/*; exit 0",
@@ -63,7 +63,7 @@
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.22.1",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
+    "vue-router": "^2.7.0",
     "vuex": "^3.0.1"
   }
 }

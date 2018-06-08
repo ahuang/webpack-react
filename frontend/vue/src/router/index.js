@@ -47,24 +47,29 @@ Vue.use(VueRouter)
 // });
 
 const router = new VueRouter({
+    mode: 'history',
     routes: [{
         path: '/',
-        component: resolve => require.ensure([], () => resolve(require('@/containers/home.vue')), 'home')
+        name: 'home',
+        component: resolve => require(['../containers/home.vue'], resolve)
     }, {
         path: '/news',
-        component: resolve => require.ensure([], () => resolve(require('@/containers/news.vue')), 'news')
+        name: 'news',
+        component: () => import('../containers/news.vue')
         
     }, {
         path: '/music',
-        component: resolve => require.ensure([], () => resolve(require('@/containers/music.vue')), 'music')
-        
+        name: 'music',
+        component: r => require.ensure([], () => r(require('../containers/music.vue')), 'demo')
     }, {
         path: '/test',
-        component: resolve => require.ensure([], () => resolve(require('@/containers/test/index.vue')), 'test')
+        name: 'test',
+        component: resolve => require(['../containers/test/index.vue'], resolve)
         
     }, {
         path: '/login',
-        component: resolve => require.ensure([], () => resolve(require('@/containers/login.vue')), 'login')        
+        name: 'login',
+        component: resolve => require(['../containers/login.vue'], resolve)        
     }]
 });
 

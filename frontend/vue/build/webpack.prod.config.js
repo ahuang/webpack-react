@@ -15,7 +15,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const webpackProdConfig = merge(base, {
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        filename: '[name].[chunkhash:8].js',
+        filename: '[name].[chunkhash].js',
         chunkFilename: "[id].[name].[chunkHash].js",
         publicPath: '/',
     },
