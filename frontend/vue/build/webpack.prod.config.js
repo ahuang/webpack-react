@@ -83,7 +83,7 @@ const webpackProdConfig = merge(base, {
                     name: 'vendor-others',
                     test: /[\\/]node_modules[\\/]/,  // 自动识别其他公共包
                     enforce: true,
-                    priority: -20, //优先级调低
+                    priority: -20, //优先级调低，防止将手动指定内容提前打包
                     reuseExistingChunk: true                    
                 },
             },
