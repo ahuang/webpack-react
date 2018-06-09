@@ -5,14 +5,19 @@ const base = require('./webpack.base.config.js');
 const path = require('path');
 const glob = require('glob-all');
 const webpack = require('webpack');
-// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-const webpackProdConfig = merge(base, {
+const webpackProdConfig = merge(base, {  
+    entry:{
+        main: '@/main.js',
+        'vendor-base': ['vue', 'vue-router', 'vuex'],
+        'vendor-extend': ['moment', 'axios']
+    },
     output: {
         path: path.join(__dirname, '..', 'dist'),
         filename: '[name].[chunkhash].js',
@@ -22,18 +27,22 @@ const webpackProdConfig = merge(base, {
     devtool: 'source-map',
     mode: 'production',
     plugins: [
+        new WebpackCleanupPlugin(),        
         new FileManagerPlugin({
             onEnd: {
                 copy: [{
                     source: path.resolve(__dirname, '../index.html'),
                     destination: path.resolve(__dirname, '../dist/index.html')
+                },{
+                    source: path.resolve(__dirname, '../static'),
+                    destination: path.resolve(__dirname, '../dist/static')
                 }]
             }
         }),
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.resolve(__dirname, '../index.html'),
-            template: path.resolve(__dirname, '../prod1.html'),
+            template: path.resolve(__dirname, '../prod.html'),
         }),
         new PurifyCSSPlugin({
             paths: glob.sync([
@@ -49,26 +58,36 @@ const webpackProdConfig = merge(base, {
             minRatio: 0.8
         }),
         new ExtractTextPlugin('[name].[chunkhash:8].css'),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./manifest.json'),
-        }),
     ],
     optimization: {
         minimize: true,
-        // 4.0中已经删除CommonsChunkPlugin，替换成了splitChunks
         runtimeChunk: {
             name: 'runtime',
         },
         splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'common',
-                    chunks: 'all'
-                }
-            }
-        }
+            cacheGroups: {           
+                'vendor-base': {
+                    chunks: 'initial',
+                    name: 'vendor-base',
+                    test: 'vendor-base', // 手动指定打包内容
+                    enforce: true,
+                },
+                'vendor-extend': {
+                    chunks: 'initial',
+                    name: 'vendor-extend',
+                    test: 'vendor-extend', // 手动指定打包内容
+                    enforce: true,
+                },   
+                'vendor-others': {
+                    chunks: 'initial',
+                    name: 'vendor-others',
+                    test: /[\\/]node_modules[\\/]/,  // 自动识别其他公共包
+                    enforce: true,
+                    priority: -20, //优先级调低
+                    reuseExistingChunk: true                    
+                },
+            },
+        },
     }
 });
 
