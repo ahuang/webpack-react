@@ -1,8 +1,8 @@
 <template>
     <div class="m-test">
         <p class="title">测试区域～～～</p>
-        <!-- 动态组件 Test1 Test2 Test3 Test4 Test5-->
-        <component is="Test4"></component>
+        <!-- 动态组件 Test1 Test2 Test3-->
+        <component v-bind:is="chindName"></component>
     </div>
 </template>
 <script>
@@ -21,6 +21,11 @@
             Test3,
             Test4,
             Test5
+        },
+        data(){
+            return {
+                chindName: 'Test2'
+            }
         }
     }
 </script>

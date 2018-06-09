@@ -11,6 +11,9 @@
                 <router-link to="news"><i class="icon-bullhorn" /> News</router-link>
             </li>
             <li class="menu">
+                <router-link to="login"><i class="icon-user" /> login</router-link>
+            </li>            
+            <li class="menu">
                 <router-link to="test"><i class="icon-book" /> Test</router-link>
             </li>
             <li class="menu" style="float: right;  margin-right: 20px">

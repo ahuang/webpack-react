@@ -1,5 +1,5 @@
 {
     "presets": ["env","stage-3"],
-    "plugins" : ["transform-flow-comments"],
-    "comments": false
+    "plugins" : ["transform-flow-comments", "syntax-dynamic-import"],
+    "comments": true
 }

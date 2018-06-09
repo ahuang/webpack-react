@@ -7,6 +7,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const webpackDevConfig = merge(base, {
+    output: {
+        chunkFilename: "[id].[name].[chunkHash].js",
+    },    
     devServer: {
         contentBase: './',
         compress: true,

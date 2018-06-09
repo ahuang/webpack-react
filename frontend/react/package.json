@@ -12,7 +12,6 @@
     "lint": "node_modules/eslint/bin/eslint.js --ext .js --ext .jsx  **/*; exit 0",
     "lint-fix": "node_modules/eslint/bin/eslint.js --fix --ext .js --ext .jsx  **/*; exit 0",
     "lint-html": "node_modules/eslint/bin/eslint.js   --ext .js --ext .jsx  **/*  -f html -o ./reports/lint-results.html; exit 0",
-    "precommit": "npm run lint",
     "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
