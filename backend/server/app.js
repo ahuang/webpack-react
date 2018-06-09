@@ -107,6 +107,23 @@ app.use(async function (ctx) {
     ctx.session.user = null;
     user.userName = null;
     ctx.redirect('/');
+  } else if ( ctx.path === '/api/v1/weather'){
+    let temperature = [], humidity = [];
+    let xtime = 1525698119000;
+    const dotCount = 5;
+    for(let i=0; i<=dotCount; i++){
+        temperature.push({x: xtime, y: Math.random() * 10});
+        humidity.push({x: xtime, y: Math.random() * 100});
+        xtime += 1000;
+    };     
+    ctx.body = {
+        code: 200,
+        message: 'SUCCESS',       
+        result: {
+            'temperature':temperature,
+            'humidity': humidity
+        }
+    }    
   }
 
 });

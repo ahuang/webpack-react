@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');
@@ -9,12 +10,13 @@ const happyThreadPool = HappyPack.ThreadPool({
     size: os.cpus().length
 });
 
-const entryPath = path.join(__dirname, '..', 'src', 'main.js');
 const outputPath = path.join(__dirname, '..', 'dist');
 
 
 module.exports = {
-    entry: entryPath,
+    entry: {
+        main: '@/main',
+    },
     output: {
         path: outputPath,
         filename: 'bundle.js',
@@ -77,6 +79,7 @@ module.exports = {
         alias: {
             vue: 'vue/dist/vue.js',
             '@': path.join(__dirname, '..', 'src'),
+            'echarts': 'echarts'
         },
     },
     plugins: [
@@ -107,6 +110,7 @@ module.exports = {
             threadPool: happyThreadPool,
             loaders: ['css-loader', 'sass-loader']
         }),
-        new FlowBabelWebpackPlugin()
+        new FlowBabelWebpackPlugin(),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
     ],
 };

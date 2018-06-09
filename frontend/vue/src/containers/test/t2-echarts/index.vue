@@ -11,7 +11,6 @@
     </div>
 </template>
 <script>
-    import echarts from 'echarts';
     import moment from 'moment';
     import WeatherService from '@/services/weather.js';
     import '@/containers/test/t2-echarts/index.scss';
