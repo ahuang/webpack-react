@@ -7,4 +7,3 @@ backend/server/dist/
 frontend/vue/package-lock.json
 frontend/react/package-lock.json
 backend/server/dist/.keep
-frontend/backupCode/
