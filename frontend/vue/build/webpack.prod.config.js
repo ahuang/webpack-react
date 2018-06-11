@@ -6,7 +6,8 @@ const path = require('path');
 const glob = require('glob-all');
 const webpack = require('webpack');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
@@ -57,7 +58,17 @@ const webpackProdConfig = merge(base, {
             threshold: 10240,
             minRatio: 0.8
         }),
-        new ExtractTextPlugin('[name].[chunkhash:8].css'),
+        // 为了支持按需加载抽离css 需要添加allChunks配置，但是会出现css重复问题
+        // new ExtractTextPlugin({
+        //     filename: '[name].[chunkhash].css',
+        //     allChunks:true
+        // }),
+        // 支持按需加载抽离css 并且css不回出现重复问题
+        new ExtractCssChunks({
+            filename: '[name].[chunkhash].css',
+            chunkFilename:'[id].[chunkhash].css',
+        })
+
     ],
     optimization: {
         minimize: true,
