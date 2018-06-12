@@ -1,0 +1,69 @@
+{
+    "type": "Program",
+    "body": [
+        {
+            "type": "IfStatement",
+            "test": {
+                "type": "BinaryExpression",
+                "operator": "===",
+                "left": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "Identifier",
+                            "name": "process"
+                        },
+                        "property": {
+                            "type": "Identifier",
+                            "name": "env"
+                        }
+                    },
+                    "property": {
+                        "type": "Identifier",
+                        "name": "NODE_ENV"
+                    }
+                },
+                "right": {
+                    "type": "Literal",
+                    "value": "development",
+                    "raw": "'development'"
+                }
+            },
+            "consequent": {
+                "type": "BlockStatement",
+                "body": [
+                    {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                            "type": "CallExpression",
+                            "callee": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                    "type": "Identifier",
+                                    "name": "console"
+                                },
+                                "property": {
+                                    "type": "Identifier",
+                                    "name": "log"
+                                }
+                            },
+                            "arguments": [
+                                {
+                                    "type": "Literal",
+                                    "value": "in development mode",
+                                    "raw": "'in development mode'"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "alternate": null
+        }
+    ],
+    "sourceType": "script"
+}

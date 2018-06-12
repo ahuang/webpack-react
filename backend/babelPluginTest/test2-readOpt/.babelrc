@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        ["./plugin.js",
+            {
+                "bad": "good",
+                "dead": "alive"
+            }
+       ]
+    ]
+}
