@@ -1,0 +1,54 @@
+
+<div id="app">
+  {{ message }}
+  <my-component inline-template>
+    <div>
+        <p> test2 {{animal}}</p>
+        <input v-model="animal" >
+        <button @click="handleClick">click</button>
+    </div>
+    </my-component>
+</div>
+
+
+
+<script>
+
+var myComponent = Vue.extend({
+    template: '#child1',
+    data(){  
+        return {  
+            animal:'cat'  
+        }  
+    },
+    methods: {
+        handleClick(){
+            console.log('handleClick');
+            this.animal = 'dog';
+            
+        }
+    }  
+});
+
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue!'
+    },
+    components: {
+        'my-component' : myComponent
+    },
+    mounted(){
+        this.init();
+    },
+    methods: {
+        init(){
+            this.test1();
+        },
+        test1(){
+            console.log('parent test1', this.message);            
+        }
+    }
+})
+</script>

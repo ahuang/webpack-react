@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/Mock.js/1.0.0/mock.js"></script>
+    <script>
+        // mock
+        Mock.setup({
+            timeout: 1000 // 设置请求1秒后返回，可以测试页面加载效果
+        });
+        Mock.path = 'http://localhost:3001/smartauto';
+        // url: "https://httpbin.org/headers",
+        var url = "http://localhost:3001/smartauto/local/cases";
+        var Random = Mock.Random;
+        Mock.mock(url, function(options) {
+            console.log('~~~ local/cases options:', JSON.stringify(options));
+            var data = [
+                {testTime: 1, execName: 2, testDev: 3,  failNum: 4, allNum: 5, status: 6}
+            ];
+            return {
+                "data": data,
+                "message": null,
+                "success": true,
+                "code": 200,
+                "global_error": true
+            }
+        });
+
+        // ajax        
+        window.onload = function(){       
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json'
+            }).done(function(data, status, xhr) {
+                // console.log(JSON.stringify(data, null, 4));
+                document.write(JSON.stringify(data));
+            });            
+        }
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

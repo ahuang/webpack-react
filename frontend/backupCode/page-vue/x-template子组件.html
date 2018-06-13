@@ -1,0 +1,46 @@
+<div id="app">
+  {{ message }}
+  <my-component></my-component>
+</div>
+
+
+<script type="text/x-template" id="child1">
+    <div>
+        <p> test1 {{animal}}</p>
+        <input v-model="animal" >
+    </div>
+</script>
+
+
+
+<script>
+var myComponent = Vue.extend({
+    template: '#child1',
+    data(){  
+        return {  
+            animal:'cat'  
+        }  
+    }     
+});
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue!'
+    },
+    components: {
+        'my-component' : myComponent
+    },
+    mounted(){
+        this.init();
+    },
+    methods: {
+        init(){
+            this.test1();
+        },
+        test1(){
+            console.log('parent test1', this.message);            
+        }
+    }
+})
+</script>
