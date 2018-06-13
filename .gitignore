@@ -8,3 +8,4 @@ frontend/vue/package-lock.json
 frontend/react/package-lock.json
 backend/server/dist/.keep
 backend/babelPluginTest/node_modules/
+backend/AST/esprimaParser/node_modules/

@@ -1,0 +1,27 @@
+
+--- step1:  将code转换为AST ---
+Script {
+  type: 'Program',
+  body: 
+   [ FunctionDeclaration {
+       type: 'FunctionDeclaration',
+       id: [Identifier],
+       params: [],
+       body: [BlockStatement],
+       generator: false,
+       expression: false,
+       async: false } ],
+  sourceType: 'script' }
+
+--- step2:   遍历并且更新AST  ---
+
+--- step3:    将AST重新生成为源码  ---
+function ast_awsome() {
+}
+
+ 输入code: 
+ function ast(){}
+
+ 输出code: 
+ function ast_awsome() {
+}
