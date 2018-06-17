@@ -11,7 +11,9 @@
     import Test3 from '@/containers/test/t3-refs/index.vue';
     import Test4 from '@/containers/test/t4-multiRender/index.vue';
     import Test5 from '@/containers/test/t5-update/index.vue';
+    import Test6 from '@/containers/test/t6-mapState/index.vue';
     import '@/containers/test/index.scss';
+    
 
     export default {
         name: 'test',
@@ -20,11 +22,12 @@
             Test2,
             Test3,
             Test4,
-            Test5
+            Test5,
+            Test6,
         },
         data(){
             return {
-                chindName: 'Test2'
+                chindName: 'Test6'
             }
         }
     }
