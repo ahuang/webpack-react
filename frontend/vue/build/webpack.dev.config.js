@@ -3,7 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const base = require('./webpack.base.config.js');
 const env = require('./env.config.json').dev;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const webpackDevConfig = merge(base, {
@@ -27,7 +29,8 @@ const webpackDevConfig = merge(base, {
     mode: 'development',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('style.css'),
+        // new ExtractTextPlugin('style.css'),
+        new ExtractCssChunks(),        
         new FileManagerPlugin({
             onEnd: {
                 copy: [{

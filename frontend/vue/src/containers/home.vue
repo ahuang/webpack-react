@@ -1,6 +1,6 @@
 <template>
     <div class="home-module">
-        <h1 style="color: orange">vue's home! welcome </h1>
+        <h1 style="color: orange">vue's home!  {{env}}  </h1>
         <p style="color: green"> {{currentUser.userName}}</p>
         <div v-if="!!isEdit">
             <input type="text" v-model="newUserName">
@@ -28,7 +28,8 @@
         data() {
             return {
                 isEdit: 0,
-                newUserName: ''
+                newUserName: '',
+                env: process.env.NODE_ENV 
             };
         },
         mounted() {
