@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <title>render-option-1</title>
+</head>
+<body>
+    <div id="app">
+        <h1>el out html 1</h1>
+    </div>        
+</body>
+<script>
+    // 生成html模板的优先级: 
+    // render方法 > template配置 > el外有html
+    var vm = new Vue({
+        el: '#app',
+        template: '<h1>template-option-1</h1>',
+        render: h => {
+            return h(
+                'h1',
+                {},
+                'render-option-1'
+            );
+        }
+    });
+</script>
+</html>

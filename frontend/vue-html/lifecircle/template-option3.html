@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <title>template-option-3</title>
+</head>
+<body>
+    <div id="app">
+        <h1>el out html 3</h1>
+    </div>        
+</body>
+<script>
+    // 有template配置,el外有html
+    var vm = new Vue({
+        el: '#app',
+        template: '<h1>template-option-3</h1>',
+    });
+</script>
+</html>

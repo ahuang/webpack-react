@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <title>el-option-1</title>
+</head>
+<body>
+    <div id="app"></div>        
+</body>
+<script>
+    // 有el配置: beforeCreated-created-beforeMounted-mounted
+    var vm = new Vue({
+        el: '#app',
+        template: '<h1>el-option-1</h1>',
+        beforeCreate(){
+            console.log('beforeCreated');        
+        },
+        created(){
+            console.log('created');
+        },
+        beforeMount(){
+            console.log('beforeMounted');
+        },
+        mounted(){
+            console.log('mounted');
+        }
+    });
+</script>
+</html>
