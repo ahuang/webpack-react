@@ -1,0 +1,69 @@
+<style type="text/css"> 
+    #div_digg{
+        position: fixed;
+        bottom: 5px;
+        width: 140px;
+        right: 240px;
+        border: 2px solid #edd7b2;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px 5px 5px 5px !important;
+        box-shadow: 0 0 0 1px #ecd7b1, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+    }
+    @media screen and (max-width: 500px) {
+        #div_digg {
+            right: 0;
+            padding: 5px;
+            width: auto;
+        }
+    }
+
+</style>
+<script language="javascript" type="text/javascript">
+    GenerateContentList();
+
+    function GenerateContentList() {
+        // '.postTitle' 是标题，修改样式
+        $('.postTitle').css('font-size', '20px').css('text-align', 'center');
+
+        // '#cnblogs_post_body' 是正文，如果正文为空，则不需要任何处理
+        var mainContent = $('#cnblogs_post_body');
+        if (mainContent.length < 1)
+            return;
+
+        // 生产目录
+        let content = '';
+        titles = $('#cnblogs_post_body h1, #cnblogs_post_body h2')
+        for (let i = 0; i < titles.length; i++) {
+            // 当前是h1标题 && (后一个是h1标题 || 当前是是最后一个h1)
+            if ($(titles[i]).is('h1') && ((i + 1 < titles.length && $(titles[i + 1]).is('h1')) || i === (titles.length - 1))) {
+                content += `<li><a href="#_label_${i}">${titles[i].innerHTML}</a></li>`;
+                titles[i].style.backgroundColor = '#edd7b2';
+                $(titles[i]).before(`<a name="_label_${i}"></a>`)
+                $(titles[i]).after(`<div style="text-align: right"><a href="#_labelTop">回到顶部</a></div>`)
+            }
+
+            // 当前是h1标题 && (后一个是h2标题)
+            if ($(titles[i]).is('h1') && (i + 1 < titles.length && $(titles[i + 1]).is('h2'))) {
+                // 后一个是h2标题
+                let j = i + 1;
+                let h2Lists = ''
+                while (j < titles.length && $(titles[j]).is('h2')) {
+                    h2Lists += `<li><a href="#_label_${j}">${titles[j].innerHTML}</a></li>`;
+                    $(titles[j]).before(`<a name="_label_${j}"></a>`)
+                    j++;
+                }
+                content += `<li> <a href="#_label_${i}">${titles[i].innerHTML}</a> <ul>${h2Lists}</ul></li>`;
+                titles[i].style.backgroundColor = '#edd7b2';
+                $(titles[i]).before(`<a name="_label_${i}"></a>`)
+                $(titles[i]).after(`<div style="text-align: right"><a href="#_labelTop">回到顶部</a></div>`)
+            }
+        }
+
+        // 生成目录，嵌入到body之前
+        content = `<a name="_labelTop"></a><div id="navCategory"> <p style="font-size:18px"><b>目录</b></p> <ul>${content}</ul> </div><p>&nbsp;</p><p style="font-size:18px"><b>正文</b></p>`;
+        if ($('#cnblogs_post_body').length != 0) {
+            $($('#cnblogs_post_body')[0]).prepend(content);
+        }
+    }
+</script>
