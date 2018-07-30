@@ -8,6 +8,7 @@
         </div>
         <div v-else>
             <button @click="doEditUserName">修改用户名</button>
+            <span>push-><button  @click="goMusicDetail">go</button></span>
         </div>
         <div>
             <p> 天气:多云~~~</p>
@@ -52,6 +53,26 @@
             doEditUserName() {
                 this.isEdit = 1;
                 this.newUserName = this.currentUser.userName;
+            },
+            goMusicDetail(){
+                /*    
+                // http://localhost:9001/#/news
+                this.$router.push('news');  
+                // http://localhost:9001/#/music/10?by=mobile
+                this.$router.push({path: 'music/10', query: {by: 'mobile'}}); 
+                //  http://localhost:9001/#/music/11?by=pc
+                this.$router.push({name: 'detail', params: {id: 11}, query: {by: 'pc'}}); 
+
+                // 在浏览器记录中前进一步，等同于 history.forward()
+                this.$router.go(1)
+                // 后退一步记录，等同于 history.back()
+                this.$router.go(-1)
+                // 如果 history 记录不够用，那就默默地失
+                this.$router.go(-100)
+                this.$router.go(100)
+                */
+                this.$router.push({name: 'detail', params: {id: 11}, query: {by: 'pc'}}); 
+
             }
         }
     };

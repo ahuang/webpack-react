@@ -15,7 +15,7 @@
             </li>            
             <li class="menu">
                 <router-link to="test"><i class="icon-book" /> Test</router-link>
-            </li>
+            </li>           
             <li class="menu" style="float: right;  margin-right: 20px">
                 <a href="/api/v1/user/logout"> 退出 </a>
             </li>
@@ -23,6 +23,7 @@
                 <a href="#" v-if="!!currentUser.userName">{{currentUser.userName}}  </a>
                 <router-link v-else to="login"> 登录 {{currentUser.userName}} </router-link>
             </li>
+
 
         </ul>
     </div>
@@ -37,6 +38,6 @@
             currentUser() {
                 return this.$store.state.app.currentUser;
             }
-        },
+        },      
     };
 </script>

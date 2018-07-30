@@ -1,16 +1,15 @@
-import { getData, putData } from '@/utils/http';
+import { axiosHttp, getData, putData } from '@/utils/http';
 
-const prefixUrl = '/api/v1';
 const UserService = {
     getUserInfo() {
-        return new Promise((resolve, reject) => getData(`${prefixUrl}/user/current`).then(response => resolve(response.data), error => reject(error)));
+        return axiosHttp(getData, {url: '/user/current'});
     },
     setUserName(userId, userName) {
-        return new Promise((resolve, reject) => putData(`${prefixUrl}/user/${userId}`, { userName }).then(response => resolve(response.data), error => reject(error)));
+        return axiosHttp(putData, {url: `/user/${userId}`, data: { userName }});
     },
     doLogin(username, password) {
-        return new Promise((resolve, reject) => putData(`${prefixUrl}/user/login`, { username, password }).then(response => resolve(response.data), error => reject(error)));
-    }
+        return axiosHttp(putData, {url: '/user/login', data: { username, password }});
+    }    
 };
 
 export default UserService;

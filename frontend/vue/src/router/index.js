@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 // import Music from '@/containers/music.vue';
 // import Login from '@/containers/login.vue';
 // import Test from '@/containers/test/index.vue';
+// import MusicDetail from '@/containers/test/music_detail.vue';
 Vue.use(VueRouter)
 
 // 多种按需加载方法
@@ -42,6 +43,8 @@ Vue.use(VueRouter)
 //     }]
 // });
 
+const detailHead = {template: '<h1>head</h1>'};
+const leftPanel = {template: '<h1>left</h1>'};
 
 // 统一用es6 import
 const router = new VueRouter({
@@ -56,7 +59,18 @@ const router = new VueRouter({
     }, {
         path: '/music',
         name: 'music',
-        component: () => import('@/containers/music.vue')
+        component: () => import('@/containers/music.vue'),
+        children: [
+            {
+                path: ':id',
+                name: 'detail',
+                components  : {
+                    default: () => import('@/containers/music_detail.vue'),
+                    head: detailHead,
+                    left: leftPanel
+                }
+            }
+        ]
     }, {
         path: '/test',
         name: 'test',

@@ -4,6 +4,12 @@
         <ul>
             <li v-for="m in musics" :key="m.id">{{m.name}}</li>
         </ul>
+        <!-- 子组件 -->
+        <div class="child" style="border: 1px solid #aaa">
+            <router-view name="head"></router-view>
+            <router-view name="left"></router-view>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
