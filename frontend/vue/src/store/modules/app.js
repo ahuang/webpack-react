@@ -10,14 +10,26 @@ export default {
         }
     },
     actions: {
-        getCurrentUser({ commit }) {
-            return UserService.getUserInfo().then((data) => {
-                if (!!data && !!data.result) {
-                    commit('setCurrentUser', data.result);
+         async getCurrentUser({ commit }) {
+            // async await方式调用
+            try {
+                console.log('asynce');
+                const currentUserRet = await UserService.getUserInfo();
+                if(currentUserRet && currentUserRet.result){
+                    commit('setCurrentUser', currentUserRet.result);
                 }
-            }, (error) => {
+            } catch (error) {
                 console.log(error);
-            });
+            }
+
+            // promise 方式调用
+            // return UserService.getUserInfo().then((data) => {
+            //     if (!!data && !!data.result) {
+            //         commit('setCurrentUser', data.result);
+            //     }
+            // }, (error) => {
+            //     console.log(error);
+            // });
         },
         updateCurrentUser(context, playload) {
             const userId = context.state.currentUser.id;
