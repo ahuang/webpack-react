@@ -11,9 +11,8 @@
             <li ref="menu">111</li>
             <li ref="menu">222</li>
         </ul>   
-
         <ul>
-            <li v-for="n in 10 " ref="numbers"> {{n}} </li>            
+            <li v-for="n in 10 " ref="numbers" :key="n"> {{n}} </li>            
         </ul>
     </div>
 </template>

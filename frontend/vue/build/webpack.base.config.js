@@ -97,7 +97,7 @@ module.exports = {
             threadPool: happyThreadPool,
             loaders: ['css-loader', 'sass-loader']
         }),
-        new FlowBabelWebpackPlugin(),
+        // new FlowBabelWebpackPlugin(),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
     ],
 };
