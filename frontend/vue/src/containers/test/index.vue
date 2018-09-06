@@ -12,6 +12,7 @@
     import Test4 from '@/containers/test/t4-multiRender/index.vue';
     import Test5 from '@/containers/test/t5-update/index.vue';
     import Test6 from '@/containers/test/t6-mapState/index.vue';
+    import Test7 from '@/containers/test/t7-import/index.vue';
     import '@/containers/test/index.scss';
     
 
@@ -23,11 +24,12 @@
             Test3,
             Test4,
             Test5,
-            Test6
+            Test6,
+            Test7,
         },
         data(){
             return {
-                chindName: 'Test2'
+                chindName: 'Test7'
             }
         }
     }
