@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <title>sync1</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1.[pass] child props count-->
+
+        <comp1 :count="count" @update:count="count++"></comp1>
+
+        <!-- 4.[receive] child event emit-->
+    </div>        
+</body>
+<script>
+    // 子组件
+    Vue.component('comp1',{
+        template: `<div>
+                        <p>show {{count}}</p>
+                        <button @click="increse">add</button>
+                  </div>`,
+        props: ['count'], // 2.[get] parent props count
+        methods: {
+            increse(){
+                console.log('increse');
+                this.$emit("update:count"); // 3.[send] parent event emit (不能有驼峰式)
+            }
+        }
+    })
+
+    // 父组件
+    var vm = new Vue({
+        el: '#app',
+        data(){
+            return {
+                count: 1
+            }
+        },
+    });
+</script>
+</html>

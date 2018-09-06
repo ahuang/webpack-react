@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <title>sync2</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1.[pass] child props count-->
+        <!-- 4.[receive] child event emit-->
+
+        <comp1 :formobj.sync="formobj"></comp1>
+        <!-- sync相当于 -->
+        <!-- <comp1 :formobj="formobj" @update:formobj="formobj=$event"></comp1> -->
+    </div>        
+</body>
+<script>
+    // 子组件
+    Vue.component('comp1',{
+        template: `<div>
+                        <p>show {{JSON.stringify(formobj)}}</p>
+                        <button @click="increse">add</button>
+                  </div>`,
+        props: ['formobj'], // 2.[get] parent props count
+        methods: {
+            increse(){
+                console.log('increse');
+                // 3.[send] parent event emit (不能有驼峰式)
+                this.$emit("update:formobj", {title: 'new-title', count: this.formobj.count+1}); 
+            }
+        }
+    })
+
+    // 父组件
+    var vm = new Vue({
+        el: '#app',
+        data(){
+            return {
+                formobj:{title: 'test', count: 0, msg: 'ok'}
+            }
+        },
+    });
+</script>
+</html>
