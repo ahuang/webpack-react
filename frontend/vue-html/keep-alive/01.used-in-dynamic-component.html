@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 100px 10%;
+        }
+        a{
+            text-decoration: underline;            
+            cursor: pointer;
+        }
+        nav a{
+            color: red;
+        }
+        .wrap{
+            border: 1px solid #ddd;
+            width: 50%;
+            padding: 10px;
+        }        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>在list页面点击任意一篇文章，然后点击about页面，最后再回退到list页面</p>
+        <p>使用keep-alive,list页面显示的是上次浏览过的文章</p>
+        <p>不使用keep-alive,list页面显示初始状态</p>
+        <div class="wrap">
+            <nav>
+                <a @click="contentComp='list'">list</a> 
+                <a @click="contentComp='about'">about</a>
+            </nav>
+            <main>
+                <!-- 不使用keep-alive -->
+                <!-- <component v-bind:is="contentComp"></component> -->
+
+                <!-- 使用keep-alive -->
+                <keep-alive>
+                    <component v-bind:is="contentComp"></component>
+                </keep-alive>
+            </main>
+        </div>
+    </div>        
+</body>
+<script>
+
+
+Vue.component('list',{
+    name: 'listPage',
+    template:   `<div>
+                    <h1 style="color: orange">this is List Page</h1>
+                    <ul>
+                        <li><a @click="changeText(1)">悯农</a></li>
+                        <li><a @click="changeText(2)">暮江吟</a></li>
+                        <li><a @click="changeText(3)">江雪</a></li>
+                    </ul>
+                    <p>{{text}}</p>
+                </div>`,
+    data(){
+        return {
+            text: ''
+        }
+    },
+    methods: {
+        changeText(number){
+            switch (number) {
+                case 1:
+                    this.text =  `锄禾日当午，汗滴禾下午。谁知盘中餐，粒粒皆辛苦`
+                    break;
+                case 2:
+                    this.text =  `一道残阳铺水中，半江瑟瑟半江红。可怜九月初三夜，露似真珠月似弓。`
+                    break;
+                case 3:
+                    this.text =  `千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。`
+                    break;                    
+                default:
+                    break;
+            }
+        }
+    }
+})
+
+Vue.component('about',{
+    name: 'listPage',
+    template: '<h1 style="color: lightblue">this is About Page</h1>'
+})
+var vm = new Vue({
+    el: '#app',
+    data() {
+        return {
+            contentComp: 'list'
+        }
+    }
+});
+
+
+</script>
+</html>
