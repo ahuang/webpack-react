@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <script src="../vue-router.3.0.1.js"></script>    
+    <title>vue-router</title>
+    <style>
+        body{
+            margin: 100px 10%;
+        }
+        a{
+            text-decoration: underline;            
+            cursor: pointer;
+        }                   
+    </style>    
+</head>
+<body>
+    <div id="app">
+        <p style="color: lightgray">
+            想要实现的效果是 <br>
+            从home 到 list，刷新list (这里需要删除缓存) <br>
+            从detail 到 home，保持上一次里的list (这里需要添加缓存)<br>
+        </p>
+        <footer>
+            <router-link to="/">首页</router-link>
+        </footer>          
+        <main>
+            <keep-alive include="listPage">
+                <router-view></router-view>
+            </keep-alive>
+        </main>
+    </div>        
+</body>
+<script>
+/*
+页面功能:
+页面下一步 home -> list -> detail
+页面上一步 home <- list <- detail
+
+想要实现的效果是 
+从home 到 list，刷新list <这里需要删除缓存>
+从detail 到 home，保持上一次里的list <这里需要添加缓存>
+*/
+
+
+
+var Home = Vue.component('homePage',{
+    template: `<div>
+                    <h1 style="color: orange">Home Page</h1>
+                    <router-link to="/home/to/list">下一步</router-link>
+                </div>`
+})
+
+var List = Vue.component('listPage',{
+    template: `<div>
+                    <h1 style="color: lightblue">List Page11</h1>
+                    <ul>
+                        <li v-for="d in listData">{{d}}</li>
+                    </ul>
+                    <router-link to="/">上一步</router-link>
+                    <router-link to="/detail">下一步</router-link>
+                </div>`,
+    data(){
+        return {
+            listData:[]
+        }
+    },
+    mounted(){
+        this.init();
+    },
+    methods: {
+        init(){
+            this.listData = []
+            for(let i=0; i<10; i++){
+                this.listData.push(Math.random()*100);
+            }
+        }
+
+    }
+    
+})
+
+var Detail = Vue.component('detailPage',{
+    template: `<div>
+                    <h1 style="color: lightgreen">Detail Page</h1>
+                    <router-link to="/detail/to/list">上一步</router-link>
+                </div>`
+})
+
+
+
+
+var router = new VueRouter({
+    routes: [
+        { path: '/', component: Home },
+        { path: '/home/to/list', component: List },
+        { path: '/detail/to/list', component: List },
+        { path: '/detail', component: Detail },
+    ]
+});
+
+
+var vm = new Vue({
+    el: '#app',
+    router
+
+});
+
+
+</script>
+</html>
