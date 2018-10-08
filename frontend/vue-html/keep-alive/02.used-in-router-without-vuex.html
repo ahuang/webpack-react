@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <script src="../vue-router.3.0.1.js"></script>    
+    <title>vue-router</title>
+    <style>
+        body{
+            margin: 100px 10%;
+        }
+        a{
+            text-decoration: underline;            
+            cursor: pointer;
+        }                   
+    </style>    
+</head>
+<body>
+    <div id="app">
+        <p style="color: lightgray">
+            想要实现的效果是 <br>
+            从home 到 list，刷新list (这里需要删除缓存) <br>
+            从detail 到 home，保持上一次里的list (这里需要添加缓存)<br>
+        </p>
+        <footer>
+            <router-link to="/">首页</router-link>
+        </footer>          
+        <main>
+            <!-- listPage一直被缓存 -->
+            <!-- <keep-alive include="listPage">
+                <router-view></router-view>
+            </keep-alive> -->
+
+            <keep-alive>
+                <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
+        </main>
+    </div>        
+</body>
+<script>
+/*
+页面功能:
+页面下一步 home -> list -> detail
+页面上一步 home <- list <- detail
+
+想要实现的效果是 
+从home 到 list，刷新list <这里需要删除缓存>
+从detail 到 home，保持上一次里的list <这里需要添加缓存>
+*/
+
+var Home = Vue.component('homePage',{
+    template: `<div>
+                    <h1>
+                        Home Page <span style="color: red"> </span>
+                        <router-link to="/list">下一步</router-link>
+                    </h1>
+                    
+                </div>`,             
+})
+
+var List = Vue.component('listPage',{
+    template: `<div>
+                    <h1> 
+                        <router-link to="/">上一步</router-link> 
+                        List Page  <span style="color: red"> {{parseInt(Math.random()*100,10)}} </span>
+                        <router-link to="/detail">下一步</router-link>
+                    </h1>
+                </div>`,
+    data(){
+        return {
+        }
+    },
+    created(){
+        console.log('created keepAlive=true');
+        this.$route.meta.keepAlive = true;
+    },
+    beforeRouteLeave(to, from, next) {
+        if(to.fullPath !== '/detail'){ // 为什么用name 不用fullPath? 是不是因为path可能有参数？
+            console.log('beforeRouteLeave keepAlive=false');
+            // from.meta.keepAlive = false; 
+            this.$route.meta.keepAlive = false;
+        }
+        next();
+    }
+})
+
+var Detail = Vue.component('detailPage',{
+    template: `<div>
+                    <h1>
+                        <router-link to="/list">上一步</router-link>
+                        Detail Page <span style="color: red">  </span>
+                    </h1>
+                </div>`,
+})
+
+
+
+
+var router = new VueRouter({
+    routes: [
+        { path: '/', name: 'home', component: Home, meta: {keepAlive: false} },
+        { path: '/list', name: 'list', component: List, meta: {keepAlive: true}  },
+        { path: '/detail', name: 'detail', component: Detail, meta: {keepAlive: false}  },
+    ]
+});
+
+
+var vm = new Vue({
+    el: '#app',
+    router
+
+});
+
+
+</script>
+</html>
