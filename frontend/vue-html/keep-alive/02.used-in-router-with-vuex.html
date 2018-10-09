@@ -86,6 +86,7 @@ var List = Vue.component('listPage',{
         }
     },
     created(){
+        // 进入list页面，进行缓存
         console.log('created addInclude listPage');
         this.addInclude("listPage");
     },
@@ -93,6 +94,7 @@ var List = Vue.component('listPage',{
         ...mapActions(["addInclude", "removeInclude"])
     },
     beforeRouteLeave(to, from, next) {        
+        // 离开list页面，如果是detail，则继续缓存，否则其他页面通过移除include数组，实现销毁缓存
         if (to.name != "detail") {
             console.log('beforeRouteLeave removeInclude listPage');
             this.removeInclude("listPage");
@@ -119,19 +121,16 @@ var router = new VueRouter({
             path: '/', 
             name: 'home', 
             component: Home, 
-            meta: {keepAlive: false} 
         },
         { 
             path: '/list', 
             name: 'list', 
             component: List, 
-            meta: {keepAlive: true}  
         },
         { 
             path: '/detail', 
             name: 'detail', 
             component: Detail,
-            meta: {keepAlive: false}  
         },
     ]
 });
