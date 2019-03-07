@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script src="https://vuejs.org/js/vue.js"></script> -->
+    <script src="../vue.2.5.17.js"></script>
+    <title>vue-html-test</title>
+    <style>
+        body{
+            margin: 100px 10%;
+        }
+        a{
+            text-decoration: underline;            
+            cursor: pointer;
+        }                   
+    </style>       
+</head>
+<body>
+    <div id="app">
+        <h1>test nextTick</h1>
+        <button @click="handleClick">click</button>
+    </div>        
+</body>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data() {
+        return {
+            msg: 'begin'
+        }
+    },
+    mounted() {
+        console.log('mouted...');
+        this.testNextTick();
+    },
+    methods: {
+        handleClick(){
+            console.log('v-on:click...');
+            this.testNextTick();
+        },
+        testNextTick(){
+            this.msg = 'end'
+            console.log('1')
+            setTimeout(() => { // macroTask
+                console.log('3')
+            }, 0)
+            this.$nextTick(function () {  // 默认microtask, v-on是macrotask
+                this.msg = 'ok';
+                console.log('2')
+            })              
+            Promise.resolve().then(function () { //microTask
+                console.log('promise!')
+            })
+        },
+    }    
+});
+
+
+</script>
+</html>
