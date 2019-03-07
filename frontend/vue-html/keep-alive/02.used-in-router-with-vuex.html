@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <script src="../vue-router.3.0.1.js"></script>    
+    <script src="../vuex.3.0.1.js"></script>
+    <title>vue-router2</title>
+    <style>
+        body{
+            margin: 100px 10%;
+        }
+        a{
+            text-decoration: underline;            
+            cursor: pointer;
+        }                   
+    </style>    
+</head>
+<body>
+    <div id="app">
+        <p style="color: lightgray">
+            想要实现的效果是 <br>
+            从home 到 list，刷新list (这里需要删除缓存) <br>
+            从detail 到 home，保持上一次里的list (这里需要添加缓存)<br>
+        </p>
+        <footer>
+            <router-link to="/">首页</router-link>
+        </footer>          
+        <main>
+            <keep-alive :include="include">
+                <router-view></router-view>
+            </keep-alive>   
+        </main>
+    </div>        
+</body>
+<script>
+/*
+页面功能:
+页面下一步 home -> list -> detail
+页面上一步 home <- list <- detail
+
+想要实现的效果是 
+从home 到 list，刷新list <这里需要删除缓存>
+从detail 到 home，保持上一次里的list <这里需要添加缓存>
+*/
+const mapState = Vuex.mapState;
+const mapActions = Vuex.mapActions;
+
+const store = new Vuex.Store({
+  state: {
+    include: []
+  },
+  mutations: {
+        ADDINCLUDE: (state, n) => state.include = state.include.concat(n),
+        REMOVEINCLUDE: (state, n) => state.include = state.include.filter(i => i !== n)
+  },
+  actions: {
+        addInclude: ({ commit }, n) => commit('ADDINCLUDE', n),
+        removeInclude: ({ commit }, n) => commit('REMOVEINCLUDE', n)
+  }  
+});
+
+
+var Home = Vue.component('homePage',{
+    template: `<div>
+                    <h1>
+                        Home Page <span style="color: red"> </span>
+                        <router-link to="/list">下一步</router-link>
+                    </h1>
+                    
+                </div>`,             
+})
+
+var List = Vue.component('listPage',{
+    template: `<div>
+                    <h1> 
+                        <router-link to="/">上一步</router-link> 
+                        List Page  <span style="color: red"> {{parseInt(Math.random()*100,10)}} </span>
+                        <router-link to="/detail">下一步</router-link>
+                    </h1>
+                </div>`,
+    data(){
+        return {
+        }
+    },
+    created(){
+        // 进入list页面，进行缓存
+        console.log('created addInclude listPage');
+        this.addInclude("listPage");
+    },
+    methods: {
+        ...mapActions(["addInclude", "removeInclude"])
+    },
+    beforeRouteLeave(to, from, next) {        
+        // 离开list页面，如果是detail，则继续缓存，否则其他页面通过移除include数组，实现销毁缓存
+        if (to.name != "detail") {
+            console.log('beforeRouteLeave removeInclude listPage');
+            this.removeInclude("listPage");
+        }
+        next();
+    }
+})
+
+var Detail = Vue.component('detailPage',{
+    template: `<div>
+                    <h1>
+                        <router-link to="/list">上一步</router-link>
+                        Detail Page <span style="color: red">  </span>
+                    </h1>
+                </div>`,
+})
+
+
+
+
+var router = new VueRouter({
+    routes: [
+        { 
+            path: '/', 
+            name: 'home', 
+            component: Home, 
+        },
+        { 
+            path: '/list', 
+            name: 'list', 
+            component: List, 
+        },
+        { 
+            path: '/detail', 
+            name: 'detail', 
+            component: Detail,
+        },
+    ]
+});
+
+
+var vm = new Vue({
+    el: '#app',
+    router,
+    store,
+    computed: {
+        ...mapState(["include"])
+    },
+});
+
+
+</script>
+</html>
