@@ -30,11 +30,6 @@
                 minPriceVar: 0
             }
         },
-        methods: {
-            changeMinPrice(){
-                this.$store.commit('goodModule/setMinPrice', this.minPriceVar);
-            }
-        },
         computed: {
             // 1. 组件自己的computed
             levelCn(){
@@ -86,10 +81,20 @@
             ...mapState('goodModule',{
                 'minPrice': state => state.minPrice,
             }),         
+        },
+        mounted(){
+            console.log('t6-mapstate mounted....');
+            // 因为store在开发模式设置了strict模式，不能直接修改state
+            // console.log(this.$store.state.version);
+            // this.$store.state.version = '2.0.0';
+            // console.log(this.$store.state.version);
+        },
+        methods: {
+            changeMinPrice(){
+                this.$store.commit('goodModule/setMinPrice', this.minPriceVar);
+            }
+        },
 
-            
-
-        }
     
     }
 </script>

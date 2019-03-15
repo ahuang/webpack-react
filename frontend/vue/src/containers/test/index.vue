@@ -29,7 +29,7 @@
         },
         data(){
             return {
-                chindName: 'Test7'
+                chindName: 'Test6'
             }
         }
     }

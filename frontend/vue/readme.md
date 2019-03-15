@@ -1,3 +1,6 @@
+# 启动-mock
+1. front: `npm run dev`   前端webpack-dev-server监听9001端口,数据在main.js引入了mock
+
 # 启动-dev
 1. front: `npm run dev`   前端webpack-dev-server监听9001端口，提供server服务，前端webpack-dev-server proxy转发到后端5000端口
 2. back: `npm run dev`  后端启动5001服务，提供api服务
