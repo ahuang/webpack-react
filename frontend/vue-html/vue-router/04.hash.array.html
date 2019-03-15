@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.2.5.17.js"></script>
+    <script src="../vue-router.3.0.1.js"></script>    
+    <title>vue-router</title>
+</head>
+<body>
+    <!-- 4.使用路由 -->
+    <div id="app">
+        <nav> <!-- 路由链接 -->
+            <router-link to="/">home</router-link>
+            <!-- 通过name方式跳转(push方法参数和这个一样) #/user/1?name=abc&ages=10&ages=20  -->  
+            <router-link :to="{name: 'userid', params:{id:1}, query:{name:'abc', ages: [10,20]}}">go_name</router-link>
+        </nav>
+        <main> <!-- 路由组件 -->
+            <router-view></router-view>
+        </main>
+    </div>        
+</body>
+<script>
+
+
+// 2.创建router实例
+var router = new VueRouter({
+    routes: [
+        { path: '/', component: {template: '<h1 style="color: orange">this is Home Page</h1>'} },
+        { 
+            name: 'userid',
+            path: '/user/:id', 
+            component: {
+                template: '<h1 style="color: lightblue">this is "/user/:id" path</h1>',
+                mounted(){
+                    console.log('\nuser/:id mounted...');
+                    console.log('this.$route.params: ', this.$route.params); // {id: 1}
+                    console.log('this.$route.query: ', this.$route.query); // {name: "abc", ages: Array(2)}
+                }
+            } 
+        },
+    ]
+});
+
+// 3.注入路由
+var vm = new Vue({
+    el: '#app',
+    router
+
+});
+
+
+</script>
+</html>
