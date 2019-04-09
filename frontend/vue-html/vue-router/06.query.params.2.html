@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>vue-router</title>
+</head>
+<body>
+    <!-- 4.使用路由 -->
+    <div id="app">
+        <nav> <!-- 路由链接 -->
+            <router-link to="/">home</router-link>
+            <router-link to="/task/1">task1</router-link>
+            <router-link to="/task/2">task2</router-link>
+            <a href="#" @click="goTask(3)">task3</a>
+            <a href="#" @click="goTask(4)">task4</a>
+        </nav>
+        <main> <!-- 路由组件 -->
+            <router-view></router-view>
+        </main>
+    </div>        
+</body>
+<script>
+
+
+// 1.定义路由组件
+var HOME = {template: '<h1 style="color: orange">this is Home Page</h1>'};
+
+var Task = Vue.component('task',{
+    template: '<div> <h1>task(see console)</h1> fullPath:{{$route.fullPath}} <br> params:{{$route.params}}  <br> query:{{$route.query}}</div>',
+    mounted(){
+        console.log('task mounted....',this.$route);
+    },
+    beforeDestroy(){
+        console.log('task beforeDestroy....');
+    }
+})
+
+// 2.创建router实例
+var router = new VueRouter({
+    routes: [
+        { path: '/', component: HOME },
+        { path: '/task/:id', name: 'task', component: Task },
+    ]
+});
+
+// 3.注入路由
+var vm = new Vue({
+    el: '#app',
+    router,
+    methods: {
+        goTask(id){
+            // this.$router.push({path: `/task/${id}`})
+            // this.$router.push({ name: 'task', params: { id: id }})
+            this.$router.push(`task/${id}`);
+        }
+    }
+
+});
+
+
+</script>
+</html>
