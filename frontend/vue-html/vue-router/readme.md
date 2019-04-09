@@ -21,7 +21,7 @@ hash上添加数组信息
 # 05.exact.html  
 exact属性含义
 
-# 06.query.params.2.html 
+# 06.componet.reuse.html
 原本以为的区别
 ```
 params和query的另一个区别是
@@ -32,9 +32,17 @@ params和query的另一个区别是
 有些场景需要reload，比如清空table的filters，reload之后，会直接清空filters，不需要人工清理。
 ```
 实际例子中有2个疑问
-1. 为什么切换task时，并没有调用beforeDestroy，也就是说组件没有reload
-2. 为什么不同方式跳转时，url上显示不同？
+1. 为什么切换task时，并没有调用beforeDestroy，也就是说组件没有reload 
+=> 路由复用 响应路由参数的变化
+https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E5%93%8D%E5%BA%94%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%98%E5%8C%96
 
+如何实现不同路由对应同一组件实现组件reload呢？也就是打破组件复用？
+1. componet :is 动态组件 比如在加个父组件，然后task组件根据路由参数来加载，其实就是把task组件变成了一个子组件
+
+
+为什么切换模块，可以reload组件呢？
+
+为什么切换模块，使用params会reload组件，但是使用query不会reload?
 
 
 
