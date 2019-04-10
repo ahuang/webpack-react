@@ -34,13 +34,6 @@
 // 1.定义路由组件
 var HOME = {template: '<h1 style="color: orange">this is Home Page</h1>'};
 
-// var TaskPrent = {
-//   template: `
-//     <div class="parent">
-//       <router-view></router-view>
-//     </div>
-//   `
-// }
 
 var Task = Vue.component('task',{
     template: '<div> <h1>task(see console)</h1> fullPath:{{$route.fullPath}} <br> params:{{$route.params}}  <br> query:{{$route.query}}</div>',
@@ -57,18 +50,7 @@ var router = new VueRouter({
     routes: [
         { path: '/', component: HOME },
         { path: '/order/:id', name: 'order', component: Task },
-        { path: '/task/:id', name: 'task', component: Task },
-        // {
-        //     path: '/task',
-        //     component: TaskPrent,
-        //     children: [
-        //         {
-        //             path: ':id',    
-        //             name: 'task',
-        //             component: Task
-        //         }
-        //     ]
-        // },        
+        { path: '/task/:id', name: 'task', component: Task },       
     ]
 });
 
