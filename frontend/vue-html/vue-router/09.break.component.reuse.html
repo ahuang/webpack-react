@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>vue-router</title>
+</head>
+<body>
+    <!-- 4.使用路由 -->
+    <div id="app">
+        <nav> <!-- 路由链接 -->
+            <router-link to="/">home</router-link>
+            <router-link to="/order/1">order1</router-link>
+            <router-link to="/order/2">order2</router-link>
+            <router-link to="/task/1">task1</router-link>
+            <router-link to="/task/2">task2</router-link>
+            <a @click="goTask(3)" style="text-decoration: underline; cursor: pointer;">task3</a>
+            <a @click="goTask(4)" style="text-decoration: underline; cursor: pointer;">task4</a>
+        </nav>
+        <main> 
+            <router-view></router-view>
+        </main>
+    </div>        
+</body>
+<script>
+// 1.定义路由组件
+var HOME = {template: '<h1 style="color: orange">this is Home Page</h1>'};
+
+// 父组件
+var TaskPrent = {
+  template: `
+    <div class="parent">
+        <task v-if="isShowTask"></task>
+    </div>`,
+  data(){
+        return {
+            isShowTask: true
+        }
+    },
+    watch: {
+    　　'$route': function (to, from) {
+            // 只有task路由才强制reload组件
+            if(to.name === 'task'){ // 避免干扰其他路由
+                this.isShowTask = false;
+                this.$nextTick(()=>{ this.isShowTask = true; })
+            }
+    　　}
+    },   
+}
+var LOADING = {template: '<div>loading....</div>'};// loading临时组件
+var Task = Vue.component('task',{// 子组件
+    template: `<div> <h1>task(see console)</h1> 
+                    fullPath:{{$route.fullPath}} <br> 
+                    params:{{$route.params}} <br> 
+                    query:{{$route.query}}
+                </div>`,
+    mounted(){
+        console.log('task mounted....',this.$route);
+    },
+    beforeDestroy(){
+        console.log('task beforeDestroy....');
+    },
+      
+})
+
+// 2.创建router实例
+var router = new VueRouter({
+    routes: [
+        { path: '/', component: HOME },
+        { path: '/order/:id', name: 'order', component: TaskPrent },
+        { path: '/task/:id', name: 'task', component: TaskPrent },     
+    ]
+});
+
+// 3.注入路由
+var vm = new Vue({
+    el: '#app',
+    router,
+    data(){
+        return {
+            activeDate: (new Date()).getTime()
+        }
+    },    
+    methods: {
+        goTask(id){
+            this.$router.push({ name: 'task', params: { id: id }})
+        }
+    }
+
+});
+
+
+</script>
+</html>
