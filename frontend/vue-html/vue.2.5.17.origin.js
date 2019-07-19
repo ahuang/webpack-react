@@ -2286,41 +2286,46 @@ function createAsyncPlaceholder (
   return node
 }
 
-function resolveAsyncComponent ( factory,baseCtor,context) {
-  if (isTrue(factory.error) && isDef(factory.errorComp)) {  // 高级异步组件
+function resolveAsyncComponent (
+  factory,
+  baseCtor,
+  context
+) {
+  if (isTrue(factory.error) && isDef(factory.errorComp)) {
     return factory.errorComp
   }
-  if (isDef(factory.resolved)) { // 第2次渲染时会执行
+
+  if (isDef(factory.resolved)) {
     return factory.resolved
   }
-  if (isTrue(factory.loading) && isDef(factory.loadingComp)) { // 高级异步组件
+
+  if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-
-  if (isDef(factory.contexts)) { // 多个地方同时初始化一个异步组件    
-    factory.contexts.push(context); // already pending
+  if (isDef(factory.contexts)) {
+    // already pending
+    factory.contexts.push(context);
   } else {
-
     var contexts = factory.contexts = [context];
     var sync = true;
-    // 定义forceRender方法
+
     var forceRender = function () {
       for (var i = 0, l = contexts.length; i < l; i++) {
-        contexts[i].$forceUpdate(); // 这里会触发第2次渲染
+        contexts[i].$forceUpdate();
       }
     };
-    // 定义resolve方法
-    // once是闭包函数(输入和输出都是函数)，使用1个标志位保证了它包装的函数只会执行一次
+
     var resolve = once(function (res) {
-      // cache resolved, ensureCtor生成组件的构造函数，并缓存到factory.resolved，用于第2次渲染
-      factory.resolved = ensureCtor(res, baseCtor);  
-      // sync在主线程中初始值时true，执行异步操作后的主线程赋值成了false
-      if (!sync) { // 判断当前resolve方法是在异步操作中调用还是同步操作调用
+      // cache resolved
+      factory.resolved = ensureCtor(res, baseCtor);
+      // invoke callbacks only if this is not a synchronous resolve
+      // (async resolves are shimmed as synchronous during SSR)
+      if (!sync) {
         forceRender();
       }
     });
-    // 定义reject方法
+
     var reject = once(function (reason) {
       "development" !== 'production' && warn(
         "Failed to resolve async component: " + (String(factory)) +
@@ -2332,20 +2337,15 @@ function resolveAsyncComponent ( factory,baseCtor,context) {
       }
     });
 
+    var res = factory(resolve, reject);
 
-
-    // factory就是用户自定义的工程函数,也就是异步组件vue.component的第2个参数
-    
-    // 调用方式1(factory是 resolve + webpack-require 组合)
-    var res = factory(resolve, reject);      
     if (isObject(res)) {
-      if (typeof res.then === 'function') { 
-        // 调用方式2(factory是 () => Promise)
+      if (typeof res.then === 'function') {
+        // () => Promise
         if (isUndef(factory.resolved)) {
           res.then(resolve, reject);
         }
-      } else if (isDef(res.component) && typeof res.component.then === 'function') { 
-        // 调用方式3(factory是 () => ({}) 处理加载状态)
+      } else if (isDef(res.component) && typeof res.component.then === 'function') {
         res.component.then(resolve, reject);
 
         if (isDef(res.error)) {
@@ -2354,7 +2354,6 @@ function resolveAsyncComponent ( factory,baseCtor,context) {
 
         if (isDef(res.loading)) {
           factory.loadingComp = ensureCtor(res.loading, baseCtor);
-
           if (res.delay === 0) {
             factory.loading = true;
           } else {
@@ -2378,6 +2377,7 @@ function resolveAsyncComponent ( factory,baseCtor,context) {
         }
       }
     }
+
     sync = false;
     // return in case resolved synchronously
     return factory.loading
@@ -4208,11 +4208,10 @@ function createComponent (
 
   // async component
   var asyncFactory;
-  if (isUndef(Ctor.cid)) { // 异步组件的cid=undefined
+  if (isUndef(Ctor.cid)) {
     asyncFactory = Ctor;
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor, context);
-    // 异步组件加载会调用2次resolveAsyncComponent，第1次返回值是undefined，第2次返回值不是undefined
-    if (Ctor === undefined) { // 创建一个占位的注释 VNode，把 asyncFactory 和 asyncMeta 赋值给当前 vnode，第二次渲染时需要用到
+    if (Ctor === undefined) {
       // return a placeholder node for async component, which is rendered
       // as a comment node but preserves all the raw information for the node.
       // the information will be used for async server-rendering and hydration.
